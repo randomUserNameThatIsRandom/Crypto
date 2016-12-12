@@ -40,10 +40,10 @@ Now set
 \[m_2' := m_2 \oplus  MAC(m_1)  \oplus  MAC(m_1')\]
 And obtain 
 \begin{align*}
-MAC(m_1'|| 0...01|| m_2') &= E_k( E_k( (E_k(m_1')\oplus 0...01 ) \oplus m_2')\oplus 0...011)\\
+MAC(m_1'|| 0...01|| m_2') &= E_k( E_k( E_k(E_k(m_1')\oplus 0...01 ) \oplus m_2')\oplus 0...011)\\
  &= E_k( E_k( MAC(m_1') \oplus m_2')\oplus 0...011)\\
  &= E_k( E_k( MAC(m_1) \oplus m_2)\oplus 0...011)\\
- &= E_k( E_k( (E_k(m_1)\oplus 0...01 ) \oplus m_2)\oplus 0...011)\\
+ &= E_k( E_k( E_k(E_k(m_1)\oplus 0...01 ) \oplus m_2)\oplus 0...011)\\
  &= MAC(m_1||0...01||m_2)
 \end{align*}
 
