@@ -1,0 +1,123 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{blindtext}
+\usepackage{geometry}
+\geometry{verbose,tmargin=3cm,bmargin=3cm,lmargin=3cm,rmargin=3cm}
+\title{Crypto -HW 3}
+\author{Hagai Ben Yehuda, ID num: 305237000\\ Jonathan Bauch, ID num: 204761233}
+\date{}
+\renewcommand{\thesubsection}{\thesection.\alph{subsection}}
+\begin{document}
+  \maketitle
+
+\section{}
+
+\subsection{}
+
+Let $m_1, m_2\in \{0,1\}^n$ be two distinct messages.
+Assume that we have obtained $MAC_k(m_2 ) = F_k(m_2)$ and $MAC_k(m_1 || m_2 ) = F_k(m_1)\oplus F_k(m_2)$ ($||$ means concatenation) then we can calculate 
+\[MAC_k(m_1 || m_2 )  \oplus MAC_k(m_2) = F_k(m_1) \oplus F_k(m_2) \oplus F_k(m_2) = F_k(m_1) = MAC_k(m_1)\]
+Thus we can obtain the $MAC$ for a new message showing that this scheme is indeed insecure for variable length messages.
+
+\subsection{•}
+Let $m_1, m_2\in \{0,1\}^n$ be two distinct messages.
+Assume that we have obtained \[MAC_k(m_1 || m_1) = (F_k(m_1)), F_k(F_k(m_1))\] and \[MAC_k(m_2 || m_2) = (F_k(m_2)), F_k(F_k(m_2))\]
+Then we have also obtained \[MAC_k(m_1 || m_2) =  (F_k(m_1)), F_k(F_k(m_2))\] (we have the first part from the result for $MAC_k(m_1 || m_1) $ and the second part from $MAC_k(m_2 || m_2)$ ) thus we have obtained the $MAC$ for a new message ($m_1||m_2$) showing that this scheme is insecure.
+
+\subsection{•}
+Let $m_1, m_2\in \{0,1\}^{n-1}$ be two distinct messages.
+Assume that we have obtained \[MAC_k(m_1 || m_1) = (F_k(0 ||m_1), F_k(1||m_1))\] and \[MAC_k(m_2 || m_2) = (F_k(0 ||m_2), F_k(1||m_2))\]
+Then we can construct \[MAC_k(m_1||m_2) = (F_k(0 ||m_1), F_k(1||m_2))\] (where the first part comes from $MAC_k(m_1 || m_1)$ and the second one from $MAC_k(m_2 || m_2)$ ).
+Thus we have forged a $MAC$ for a previously unseen message proving that the scheme is insecure.
+
+\section{•}
+Let $m_1,m_1', m_2\in \{0,1\}^{n-1}$ be distinct messages. First we obtain 
+\[MAC(m_1) = E_k(E_k(m_1) \oplus(0...01))\]
+ then we obtain 
+\[MAC(m_1') = E_k(E_k(m_1') \oplus(0...01))\]
+Now set 
+\[m_2' := m_2 \oplus  MAC(m_1)  \oplus  MAC(m_1')\]
+And obtain 
+\begin{align*}
+&MAC(m_1'|| 0...01|| m_2') =  E_k( E_k( (E_k(m_1')\oplus 0...01 ) \oplus m_2')\oplus 0...011) =\\
+&E_k( E_k( MAC(m_1') \oplus m_2')\oplus 0...011) = E_k( E_k( MAC(m_1) \oplus m_2)\oplus 0...011) =\\
+&E_k( E_k( (E_k(m_1)\oplus 0...01 ) \oplus m_2)\oplus 0...011) = MAC(m_1||0...01||m_2)
+\end{align*}
+
+Thus we can send $(m_1||0...1|| m_2 , MAC(m_1'|| 0...01|| m_2'))$, as we have shown this is indeed the $MAC$ for this message and we haven't asked for it directly ($m_1'$ was  chosen to be different from $m_1$), showing that this scheme is also not secure.
+
+\section{}
+\subsection{•}
+No, for instance if $h$ is the identity on $\{0,1\}^n$ then it is obvoiusly collision resistant, but is not a $OWF$ as for every $x \in Im(h)$, $h^{-1}(x) = x$ and thus for every element in $h$'s image, a source can be found in constant time with probability $1$. 
+
+\subsection{•}
+Indeed, define $A'$ as follows:
+\begin{itemize}
+\item Choose $x \in \{0,1\}^n$ uniformly from $\{0,1\}^n$.
+\item Return $(A(h(x)), x)$.
+\end{itemize}
+Correctness: the probability that $A'$ indeed returns (at the first position) $x'$ such that $h(x') = h(x)$ is $\geq \epsilon$ from the assumption on $A$. thus the only condition in which $x$ and $x'$ are not an example of a collision is if $x = x'$,  we now note that:
+\begin{align*}
+&\Pr_{x \leftarrow U_n}(A' \mbox{ returns the same element in both indices}) =\\
+&\Pr_{x \leftarrow U_n}(A \mbox{ finds an inverse for } h(x)) * \Pr_{x \leftarrow U_n}(x = x' | h(x) = h(x')) =\\
+& \Pr_{x \leftarrow U_n}(A \mbox{ finds an inverse for } h(x)) * \frac{1}{2^n}
+\end{align*}
+where the first equality is due to the fact that $x$ was chosen in random and the second equality is derived from the regularity of $h$. 
+
+Thus we obtain:
+\begin{align*}
+&\Pr_{x \leftarrow U_n}(A' \mbox{ returns a valid collision}) =\\
+& \Pr_{x \leftarrow U_n}(A \mbox{ finds an inverse for } h(x) \cap A'(h(x) \neq x) = \\
+&  \Pr_{x \leftarrow U_n}(A \mbox{ finds an inverse for } h(x)) -  \Pr_{x \leftarrow U_n}(A \mbox{ finds an inverse for } h(x) \cap A(h(x)) = x )=\\
+&  \Pr_{x \leftarrow U_n}(A \mbox{ finds an inverse for } h(x)) -  \Pr_{x \leftarrow U_n}(A(h(x)) = x )=\\
+ & \Pr_{x \leftarrow U_n}(A \mbox{ finds an inverse for } h(x)) - \Pr_{x \leftarrow U_n}(A'\mbox{ returns the same element in both indices}) =\\
+ &  \Pr_{x \leftarrow U_n}(A \mbox{ finds an inverse for } h(x)) * (1-  \frac{1}{2^n})  \geq \epsilon(1-\frac{1}{2^n})
+\end{align*}
+
+Hence $A'$ is a PPT algorithm as requested.
+
+\subsection{•}
+We construct $A$' as before and provide a new analysis (as some of the constraints regarding $h$  and the origin size have changed)
+
+\[\Pr_{x \leftarrow U_n}(A' \mbox{ produces a valid colsion}) = \Pr_{x \leftarrow U_n}(A \mbox{ finds inverse}) - \Pr_{x \leftarrow U_n}(A(h(x)) = x)\]
+note that:
+\begin{align*}
+& \Pr_{x \leftarrow U_n}(A(h(x)) = x) = \\
+&\Pr_{x \leftarrow U_n}(A(h(x)) = x \cap A(h(x)) \neq x \cap \exists x' \in \{0,1\}^n x' \neq x \mbox{ s.t. } h(x) = h(x')) +\\
+& \Pr_{x \leftarrow U_n}(A(h(x)) = x \cap A(h(x))) \neq x \cap \forall x' \in \{0,1\}^n h(x') = h(x) \rightarrow x = x')
+\end{align*}
+but we have that 
+\[\Pr_{x \leftarrow U_n}(\forall x' \in \{0,1\}^n h(x') = h(x) \rightarrow x = x') \leq \frac{2^n - 1}{n^{n+s}} \leq \frac{1}{2^s}\]
+since there are at most $2^{n}$ possible values for $h$ (the number of elements in the range).
+thus
+\[ \Pr_{x \leftarrow U_n}(A(h(x)) = x \cap A(x) \neq x \cap \forall x' \in \{0,1\}^n h(x') = h(x) \rightarrow x = x') \leq \frac{1}{2^s}\]
+in addition since in the second case there are at least two elements that collide we have that
+\[\Pr_{x \leftarrow U_n}(A(h(x)) = x \cap A(h(x)) \neq x \cap \exists x' \in \{0,1\}^n x' \neq x \mbox{ s.t. } h(x) = h(x')) \leq \frac{\Pr_{x \leftarrow U_n}(h(A(h(x))) = h(x))}{2}\]
+
+Therefor we obtain:
+\[\Pr_{x \leftarrow U_n}(A' \mbox{ produces a valid colsion}) \geq \Pr_{x \leftarrow U_n}(A \mbox{ finds inverse}) - \frac{1}{2^s} - \frac{\Pr_{x \leftarrow U_n}(A \mbox{ finds inverse})}{2} \geq \frac{\epsilon}{2} - \frac{1}{2^s}\]
+as requested.
+
+\section{•}
+\subsection{•}
+Let $m \in \{0,1\}^{351}$ then $H(m) = h(0^{160} || m || 0) = H(m||0)$ this is true since when calculating the hash of a message it is padded with zeros to be of a length that is a multiply of $352$.
+
+\subsection{•}
+To solve this problem we pad the message with zeros to have a size that is a multiply of 352 and then add another block that is the number of zero bits we have added to the last block of the original message (if no bits were be added to the last block then a block of zeros is added).
+Note that this makes the mapping from a message to its padded form one to one (the original message can be determined from the padded message).
+A general idea for the equivalence between the security of the proposed scheme and $h$:
+assume that $H$ is not secure, then we can find in polynomial time two messages $m_1, m_2 \in \{0,1\}^n$ such that $m_1\neq m_2$ and $H(m_1) = H(m_2)$.
+Now we inspect the process of calculating $H$ for both messages, since the output of both calculations is identical, but the input is different (as we have shown the padding is one to one) there must be a point where the input to both invocations of $h$ is different but the output is identical (as the final output is identical) meaning that we can find using this pair a pair of messages that form a collision in $h$ in contradiction to $h$'s security.
+
+\section{•}
+We construct an adversary $A$ that on input $(c, pk)$ preforms the following:
+\begin{itemize}
+\item Set $m'$ to be the next message by lexicographical order (if the message space is not bounded we can also think of a lexicographical order).
+\item Get the next element by lexicographic order and define it to be $r$ (next as in after the previous value of $r$, in practice $m$ = $r$ this separation is meant to increase the readability of the next step).
+\item Check for all messages with lexicographic order upto $m'$ if $Enc_{pk, r}(l) = c$ (where $l$ is a message with lexicographic order smaller than $m'$, we go over all of them) if $l$ satisfies this condition return  $l$, check if $m'$ satisfies   $Enc_{pk, r'}(m') = c$ for any $r'$ with lexicographical order smaller or equal to $r$ if $m'$ satisfies the condition for some $r'$ return $m'$ else go back to the previous state.
+\end{itemize}
+
+Note that since $Enc_{pk,r}$ is an encryption scheme it is one-to-one (otherwise it would not be possible to decipher messages), thus if we find $m'$  and that satisfies for some $r'$: $Enc_{pk,r'}(m') = c = Enc_{pk,r}(m)$ it must also satisfy  $m' =m$. Since we are guaranteed that $c$ has an origin under $Enc_{pk, r}$ (we know that $c$ was generated from encrypting $m$ with some $r$ using this scheme), $A$ will reach it in finite time because the message $m$ has a finite lexicographical order and so does the random element $r$ thus since we go over all possible pairs, we will find a matching pair. Because no other pair can satisfy  $Enc_{pk, r'}(m') = c$  ($Enc_{pk, r}$ is one-to-one) , $A$ will not stop before reaching the pair, hence $A$ will return $m$ with probability $1$.
+
+\end{document}
