@@ -9,6 +9,7 @@
 \author{Hagai Ben Yehuda, ID num: 305237000\\ Jonathan Bauch, ID num: 204761233}
 \date{}
 \renewcommand{\thesubsection}{\thesection.\alph{subsection}}
+\interlinepenalty 10000
 \begin{document}
   \maketitle
 
@@ -148,16 +149,12 @@ Note that we can set $A'(pk, F_{pk}(r), B(r)) = A(F_{pk}(r), B(r)) $ and thus $A
 Hence our encryption scheme is in-fact $2\epsilon$ semantically-secure.
 
 \section{•}
-
 \lstinputlisting[language=Python, caption=Q7 Code]{Q7.sage}
-
 \lstinputlisting[caption=Q7 Output]{Q7_output.txt}
-7.b: the sampled generators ratio ($A / N$) is $0.332$, which is very close to the real ratio of generators $\phi(\phi(2^{107}-1)) / \phi(2^{107}-1) \approx 0.330$. So we would say that the estimate is pretty good.
+\textbf{7.b}: the sampled generators ratio ($A / N$) is $0.332$, which is very close to the real ratio of generators $\phi(\phi(2^{107}-1)) / \phi(2^{107}-1) \approx 0.330$. So we would say that the estimate is pretty good.
 
+\pagebreak
 \section{•}
-
 \lstinputlisting[language=Python, caption=Q8 Code]{Q8.sage}
-
 \lstinputlisting[caption=Q8 Output]{Q8_output.txt}
-
 \end{document}
