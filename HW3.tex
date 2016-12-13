@@ -86,8 +86,8 @@ We construct $A$' as before and provide a new analysis (as some of the constrain
 note that:
 \begin{align*}
 & \Pr_{x \leftarrow U_n}(A(h(x)) = x) = \\
-&\Pr_{x \leftarrow U_n}(A(h(x)) = x \cap A(h(x)) \neq x \cap \exists x' \in \{0,1\}^n x' \neq x \mbox{ s.t. } h(x) = h(x')) +\\
-& \Pr_{x \leftarrow U_n}(A(h(x)) = x \cap A(h(x))) \neq x \cap \forall x' \in \{0,1\}^n h(x') = h(x) \rightarrow x = x')
+&\Pr_{x \leftarrow U_n}(A(h(x)) = x \cap \exists x' \in \{0,1\}^n x' \neq x \mbox{ s.t. } h(x) = h(x')) +\\
+& \Pr_{x \leftarrow U_n}(A(h(x)) = x \cap \forall x' \in \{0,1\}^n h(x') = h(x) \rightarrow x = x')
 \end{align*}
 but we have that 
 \[\Pr_{x \leftarrow U_n}(\forall x' \in \{0,1\}^n h(x') = h(x) \rightarrow x = x') \leq \frac{2^n - 1}{n^{n+s}} \leq \frac{1}{2^s}\]
@@ -95,7 +95,7 @@ since there are at most $2^{n}$ possible values for $h$ (the number of elements 
 thus
 \[ \Pr_{x \leftarrow U_n}(A(h(x)) = x \cap A(x) \neq x \cap \forall x' \in \{0,1\}^n h(x') = h(x) \rightarrow x = x') \leq \frac{1}{2^s}\]
 in addition since in the second case there are at least two elements that collide we have that
-\[\Pr_{x \leftarrow U_n}(A(h(x)) = x \cap A(h(x)) \neq x \cap \exists x' \in \{0,1\}^n x' \neq x \mbox{ s.t. } h(x) = h(x')) \leq \frac{\Pr_{x \leftarrow U_n}(h(A(h(x))) = h(x))}{2}\]
+\[\Pr_{x \leftarrow U_n}(A(h(x)) = x \cap \exists x' \in \{0,1\}^n x' \neq x \mbox{ s.t. } h(x) = h(x')) \leq \frac{\Pr_{x \leftarrow U_n}(h(A(h(x))) = h(x))}{2}\]
 
 Therefor we obtain:
 \[\Pr_{x \leftarrow U_n}(A' \mbox{ produces a valid colsion}) \geq \Pr_{x \leftarrow U_n}(A \mbox{ finds inverse}) - \frac{1}{2^s} - \frac{\Pr_{x \leftarrow U_n}(A \mbox{ finds inverse})}{2} \geq \frac{\epsilon}{2} - \frac{1}{2^s}\]
