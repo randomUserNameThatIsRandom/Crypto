@@ -122,4 +122,32 @@ We construct an adversary $A$ that on input $(c, pk)$ preforms the following:
 
 Note that since $Enc_{pk,r}$ is an encryption scheme it is one-to-one (otherwise it would not be possible to decipher messages), thus if we find $m'$  and that satisfies for some $r'$: $Enc_{pk,r'}(m') = c = Enc_{pk,r}(m)$ it must also satisfy  $m' =m$. Since we are guaranteed that $c$ has an origin under $Enc_{pk, r}$ (we know that $c$ was generated from encrypting $m$ with some $r$ using this scheme), $A$ will reach it in finite time because the message $m$ has a finite lexicographical order and so does the random element $r$ thus since we go over all possible pairs, we will find a matching pair. Because no other pair can satisfy  $Enc_{pk, r'}(m') = c$  ($Enc_{pk, r}$ is one-to-one) , $A$ will not stop before reaching the pair, hence $A$ will return $m$ with probability $1$.
 
+\section{•}
+As hinted, we set $Enc_{pk}(r, b) = (F_pk(r) , B(r) \oplus b)$.
+Assume that this is not an $2\epsilon$ semantically-secure encryption, then there exists a PPT algorithm $A$ such that:
+\[\Pr(A(F_{pk}, B_k(r)\oplus 0) = 1) -  \Pr(A(F_{pk}, B_k(r)\oplus 1) = 1) \geq 2\epsilon \]
+Which equivalently means:
+\[\Pr(A(F_{pk}, B_k(r)) ) = 1) -  \Pr(A(F_{pk}, \overline{B_k(r)}) = 1) \geq  2\epsilon \]
+Thus:
+\[\Pr(A(F_{pk}, \overline{B_k(r)}) = 1) \leq \Pr(A(F_{pk}, B_k(r)) ) = 1) - 2\epsilon \]
+
+Note that:
+\[\Pr_{u \leftarrow U_1}(A(F_{pk}(r), u) =1) = \frac{1}{2}\Pr(A(F_{pk}, B_k(r)) ) = 1)  + \frac{1}{2}\Pr(A(F_{pk}, \overline{B_k(r)}) = 1)\]
+Hence using the the last inequality we get:
+\begin{align*}
+\Pr_{u \leftarrow U_1}(A(F_{pk}(r), u) =1) &\\
+&= \frac{1}{2}(\Pr(A(F_{pk}, B_k(r)) ) = 1)  + Pr(A(F_{pk}, \overline{B_k(r)}) = 1))\\
+ &\leq\frac{1}{2}(\Pr(A(F_{pk}, B_k(r)) ) = 1) + \Pr(A(F_{pk}, B_k(r)) ) = 1) - 2\epsilon ) \\
+ &= \Pr(A(F_{pk}, B_k(r)) ) = 1) - \epsilon
+\end{align*}
+By rearranging the terms, we obtain:
+ \[\Pr(A(F_{pk}, B_k(r)) ) = 1) - \Pr_{u \leftarrow U_1}(A(F_{pk}(r), u) =1) \geq \epsilon\]
+
+Note that we can set $A'(pk, F_{pk}(r), B(r)) = A(F_{pk}(r), B(r)) $ and thus $A'$ contradicts the fact that $B(r)$ is an $\epsilon HBC$ for $F$.
+Thus our encryption scheme is in-fact $2\epsilon$ semantically-secure.
+
+
+
+
+
 \end{document}
