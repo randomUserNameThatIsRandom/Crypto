@@ -95,11 +95,11 @@ but we have that
 \[\Pr_{x \leftarrow U_n}(\forall x' \in \{0,1\}^n h(x') = h(x) \rightarrow x = x') \leq \frac{2^n - 1}{2^{n+s}} \leq \frac{1}{2^s}\]
 since there are at most $2^{n}$ possible values for $h$ (the number of elements in the range).
 thus
-\[ \Pr_{x \leftarrow U_n}(A(h(x)) = x \cap A(x) \neq x \cap \forall x' \in \{0,1\}^n h(x') = h(x) \rightarrow x = x') \leq \frac{1}{2^s}\]
+\[ \Pr_{x \leftarrow U_n}(A(h(x)) = x \cap \forall x' \in \{0,1\}^n h(x') = h(x) \rightarrow x = x') \leq \frac{1}{2^s}\]
 in addition since in the second case there are at least two elements that collide we have that
 \[\Pr_{x \leftarrow U_n}(A(h(x)) = x \cap \exists x' \in \{0,1\}^n x' \neq x \mbox{ s.t. } h(x) = h(x')) \leq \frac{\Pr_{x \leftarrow U_n}(h(A(h(x))) = h(x))}{2}\]
 
-Therefor we obtain:
+Therefore we obtain:
 \[\Pr_{x \leftarrow U_n}(A' \mbox{ produces a valid colsion}) \geq \Pr_{x \leftarrow U_n}(A \mbox{ finds inverse}) - \frac{1}{2^s} - \frac{\Pr_{x \leftarrow U_n}(A \mbox{ finds inverse})}{2} \geq \frac{\epsilon}{2} - \frac{1}{2^s}\]
 as requested.
 
