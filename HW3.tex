@@ -125,7 +125,7 @@ We construct an adversary $A$ that on input $(c, pk)$ preforms the following:
 Note that since $Enc_{pk,r}$ is an encryption scheme it is one-to-one (otherwise it would not be possible to decipher messages), thus if we find $m'$  and that satisfies for some $r'$: $Enc_{pk,r'}(m') = c = Enc_{pk,r}(m)$ it must also satisfy  $m' =m$. Since we are guaranteed that $c$ has an origin under $Enc_{pk, r}$ (we know that $c$ was generated from encrypting $m$ with some $r$ using this scheme), $A$ will reach it in finite time because the message $m$ has a finite lexicographical order and so does the random element $r$ thus since we go over all possible pairs, we will find a matching pair. Because no other pair can satisfy  $Enc_{pk, r'}(m') = c$  ($Enc_{pk, r}$ is one-to-one) , $A$ will not stop before reaching the pair, hence $A$ will return $m$ with probability $1$.
 
 \section{•}
-As hinted, we set $Enc_{pk}(r, b) = (F_pk(r) , B(r) \oplus b)$, and set $Dec_{sk}(r', b')=Inv_{sk}(r'),B(Inv_{sk}(r')) \oplus b'$.
+As hinted, we set $Enc_{pk}(r, b) = (F_{pk}(r) , B(r) \oplus b)$, and set $Dec_{sk}(r', b')=Inv_{sk}(r'),B(Inv_{sk}(r')) \oplus b'$.
 \textbf{Correctness}:
 \begin{align*}
 Dec_{sk}(Enc_{pk}(r,b)) & =Dec_{sk}(F_{pk}(r),B(r)\oplus b)\\
