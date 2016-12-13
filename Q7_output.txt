@@ -1,0 +1,35 @@
+Q7a
+m: 35
+G order:  24
+max order of elements in G: 12
+is G cyclic? False
+G elements of maximum order: [2, 3, 12, 17, 18, 23, 32, 33]
+----------------
+m: 37
+G order:  36
+max order of elements in G: 36
+is G cyclic? True
+G elements of maximum order: [2, 5, 13, 15, 17, 18, 19, 20, 22, 24, 32, 35]
+----------------
+m: 38
+G order:  18
+max order of elements in G: 18
+is G cyclic? True
+G elements of maximum order: [3, 13, 15, 21, 33, 29]
+----------------
+Q7b
+N: 100000
+A: 33209
+first 10 generators:
+    66857716506250319367553264301193
+    32776249515633484594257352388433
+    90283088453948613309802956552831
+    103701705485172287585538502325344
+    84065116369294643431138850252003
+    80185259793528183472008725361755
+    19719375452390168077799296829009
+    67997902305654377490822770728753
+    45286240638232656939088920158247
+    59960276008596838400897452282289
+sampled generators ratio: 0.33209
+real generators ratio   : 0.330161384116

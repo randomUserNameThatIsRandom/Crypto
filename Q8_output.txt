@@ -1,0 +1,37 @@
+f(x)         : x^4 + x^3 + x^2 + x + 1
+f(x) factors : x^4 + x^3 + x^2 + x + 1
+f irreducible? True
+multiplicative generators count: 32
+multiplicative generators      :
+    a + 2
+    2*a + 1
+    a^2 + 2
+    a^2 + 2*a
+    a^2 + 2*a + 2
+    2*a^2 + 1
+    2*a^2 + a
+    2*a^2 + a + 1
+    a^3 + 2
+    a^3 + 2*a
+    a^3 + 2*a + 1
+    a^3 + a^2 + a + 2
+    a^3 + a^2 + 2*a
+    a^3 + a^2 + 2*a + 2
+    a^3 + 2*a^2 + 1
+    a^3 + 2*a^2 + 2
+    a^3 + 2*a^2 + a + 1
+    a^3 + 2*a^2 + a + 2
+    a^3 + 2*a^2 + 2*a
+    a^3 + 2*a^2 + 2*a + 2
+    2*a^3 + 1
+    2*a^3 + a
+    2*a^3 + a + 2
+    2*a^3 + a^2 + 1
+    2*a^3 + a^2 + 2
+    2*a^3 + a^2 + a
+    2*a^3 + a^2 + a + 1
+    2*a^3 + a^2 + 2*a + 1
+    2*a^3 + a^2 + 2*a + 2
+    2*a^3 + 2*a^2 + a
+    2*a^3 + 2*a^2 + a + 1
+    2*a^3 + 2*a^2 + 2*a + 1
