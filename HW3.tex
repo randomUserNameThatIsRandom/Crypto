@@ -124,7 +124,7 @@ Note that since $Enc_{pk,r}$ is an encryption scheme it is one-to-one (otherwise
 
 \section{•}
 As hinted, we set $Enc_{pk}(r, b) = (F_pk(r) , B(r) \oplus b)$.
-Assume that this is not an $2\epsilon$ semantically-secure encryption, then there exists a PPT algorithm $A$ such that:
+Assume that this is not a $2\epsilon$ semantically-secure encryption, then there exists a PPT algorithm $A$ such that:
 \[\Pr(A(F_{pk}, B_k(r)\oplus 0) = 1) -  \Pr(A(F_{pk}, B_k(r)\oplus 1) = 1) \geq 2\epsilon \]
 Which equivalently means:
 \[\Pr(A(F_{pk}, B_k(r)) ) = 1) -  \Pr(A(F_{pk}, \overline{B_k(r)}) = 1) \geq  2\epsilon \]
@@ -143,8 +143,8 @@ Hence using the the last inequality we get:
 By rearranging the terms, we obtain:
  \[\Pr(A(F_{pk}, B_k(r)) ) = 1) - \Pr_{u \leftarrow U_1}(A(F_{pk}(r), u) =1) \geq \epsilon\]
 
-Note that we can set $A'(pk, F_{pk}(r), B(r)) = A(F_{pk}(r), B(r)) $ and thus $A'$ contradicts the fact that $B(r)$ is an $\epsilon HBC$ for $F$.
-Thus our encryption scheme is in-fact $2\epsilon$ semantically-secure.
+Note that we can set $A'(pk, F_{pk}(r), B(r)) = A(F_{pk}(r), B(r)) $ and thus $A'$ contradicts the fact that $B(r)$ is an $\epsilon HCB$ for $F$.
+Hence our encryption scheme is in-fact $2\epsilon$ semantically-secure.
 
 
 
