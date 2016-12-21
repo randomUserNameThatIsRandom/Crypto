@@ -1,0 +1,26 @@
+steps:
+-generate histogram from cipher
+-generate translation dict by mathing cipher hist and english text hist
+-translate cipher
+-determine characters which are translated correctly:
+correct: t,h,e, c,i,l,d,r,n,s,d,v
+
+corrections:
+o->a
+a->o
+
+g->w
+w->g
+
+y->p
+p->m
+m->y
+
+b->u
+u->f
+f->b
+
+j->q
+?q->j
+
+-done

@@ -1,0 +1,97 @@
+%% LyX 2.1.3 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[american]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{geometry}
+\geometry{verbose,tmargin=2cm,bmargin=2cm,lmargin=2cm,rmargin=2cm}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{babel}
+\begin{document}
+\begin{enumerate}
+\item {}
+
+\begin{enumerate}
+\item To show $QR\leq\mathbb{Z}_{p}^{*}$ it is enough to show (i) $1\in QR$,
+(ii) closure under multiplication, and (iii) closure under inversion.
+
+\begin{enumerate}
+\item Indeed $1\in QR$, because $1\equiv1^{2}\pmod p$
+\item Let $s_{1},s_{2}\in QR$. Then are $r_{1},r_{2}\in\mathbb{Z}_{p}^{*}$
+s.t. $s_{1}\equiv r_{1}^{2}\pmod p$, $s_{2}\equiv r_{2}^{2}\pmod p$.
+Then follows:
+\[
+s_{1}s_{2}\equiv r_{1}^{2}r_{2}^{2}=\left(r_{1}r_{2}\right)^{2}\pmod p
+\]
+ and $r_{1}r_{2}\in\mathbb{Z}_{p}^{*}$ because $\mathbb{Z}_{p}^{*}$
+is a group. Therefore $s_{1}s_{2}\in QR$ by definition.
+\item Let $s\in\mathbb{Z}_{p}^{*}$. Then there is $r\in\mathbb{Z}_{p}^{*}$
+s.t. $s\equiv r^{2}\pmod p$. Therefore:
+\[
+s^{-1}\equiv\left(r^{2}\right)^{-1}=\left(r^{-1}\right)^{2}\pmod p
+\]
+and $r^{-1}\in\mathbb{Z}_{p}^{*}$, therefore$s^{-1}\in QR$.
+\end{enumerate}
+\item Let $g\in\mathbb{Z}_{p}^{*}$, $\mathbb{Z}_{p}^{*}=\left\langle g\right\rangle $.
+Assume by contradiction that $g\in QR$. Then there is an $r\in\mathbb{Z}_{p}^{*}$
+s.t. $g\equiv r^{2}\pmod p$. Because $g$ generates $\mathbb{Z}_{p}^{*}$
+there exists $i\in\mathbb{Z}$ s.t. $r\equiv g^{i}\pmod p$ . Therefore
+$g\equiv g^{2i}\pmod p\iff g^{2i-1}\equiv1\pmod p$. Therefore $2i-1\vert o\left(g\right)=\varphi\left(p\right)=p-1$.
+Note that for prime $p>2$ we know $p$ is odd, therefore $p-1$ is
+even. On the other hand $2i-1$ is odd, therefore we get a contradiction
+(that odd divides even), meaning $g\notin QR$. For the edge case
+where $p=2$, $\mathbb{Z}_{p}^{*}$ is the trivial group (of 1 element),
+and in this case the claim is not true (because $\mathbb{Z}_{p}^{*}=QR=\left\langle 1\right\rangle $).
+From now on we will assume $p>2$.
+\item Let $g\in\mathbb{Z}_{p}^{*}$, $\mathbb{Z}_{p}^{*}=\left\langle g\right\rangle $.
+
+\begin{enumerate}
+\item Let $a\in\mathbb{Z}_{p}^{*}$. Assume $a\in QR$. Then there exists
+$r\in\mathbb{Z}_{p}^{*}$ s.t. $a\equiv r^{2}\pmod p$. Because $g$
+generates $\mathbb{Z}_{p}^{*}$, there exists a $k\in\mathbb{Z}$
+s.t. $r\equiv g^{k}\pmod p$. Therefore $a\equiv r^{2}\equiv\left(g^{k}\right)^{2}=g^{2k}\pmod p$.
+\item Let $a\in\mathbb{Z}_{p}^{*}$. Assume that $a\equiv g^{2k}\pmod p$
+for some k. Then $a\equiv\left(g^{k}\right)^{2}\pmod p$, $g^{k}\in\mathbb{Z}_{p}^{*}$,
+therefore by definition $a\in QR.$
+\end{enumerate}
+\item Let $a\in\mathbb{Z}_{p}^{*}$, $\mathbb{Z}_{p}^{*}=\left\langle g\right\rangle $.
+
+\begin{enumerate}
+\item Assume $a\in QR$. Then by (c) there is a $k\in\mathbb{Z}$ s.t. $a\equiv g^{2k}\pmod p$.
+Therefore
+\[
+a^{\frac{p-1}{2}}\equiv\left(g^{2k}\right)^{\frac{p-1}{2}}=\left(g^{p-1}\right)^{k}\equiv1^{k}=1\pmod p
+\]
+(Note that $g^{p-1}\equiv1$ because $o\left(g\right)=p-1$)
+\item Assume $a^{\frac{p-1}{2}}\equiv1\pmod p$. There is an $i\in\mathbb{Z}$
+s.t. $a\equiv g^{i}\pmod p$. Therefore
+\[
+1\equiv\left(g^{i}\right)^{\frac{p-1}{2}}=\left(g^{\frac{p-1}{2}}\right)^{i}\overset{*}{=}\left(-1\right)^{i}\pmod p
+\]
+Thus $i$ is even (again assuming $p>2$). Denote $i=2k$, and now
+by (c) we get that $a\in QR$.\\
+{*} - This can be explained as follows: $g^{\frac{p-1}{2}}\not\equiv1$
+because $o(g)=p-1>\frac{p-1}{2}$, and $\left(g^{\frac{p-1}{2}}\right)^{2}=g^{p-1}\equiv1$.
+Therefore necessarily $g^{\frac{p-1}{2}}\equiv-1$, because $\pm1$
+are the only square roots of $1\pmod p$ . (There are no other roots
+because $x^{2}-1$ as at most $2$ roots)
+\end{enumerate}
+\item Denote $a=g^{x}\mod p$. Then x is even $\iff$ there is a $k\in\mathbb{Z}$
+s.t. $x=2k$ $\iff$ $a\in QR$ (by c) $\iff$ $a^{\frac{p-1}{2}}\equiv1\pmod p$
+(by d).\\
+Therefore given $f\left(x\right)=g^{x}\mod p$ we can compute $b\coloneqq\left(f\left(x\right)\right)^{\frac{p-1}{2}}\mod p$.
+If $b=1$ then necessarily x is even, i.e. $parity(x)=0$. Otherwise
+(if $b=0)$ x is odd, i.e. $parity(x)=1$.\\
+$a^{n}\mod p$ can be computed efficiently as follows: compute values
+$a^{2^{k}}$ iteratively by squaring (mod p), until $2^{k}\ge n$
+(note that we don't have to store $a^{2^{k}}$ in memory, as we compute
+(mod p)). Then according to the binary representation of $n$, multiply
+these values for which the k'th bit of $n$ is 1. The whole process
+involves $O\left(\log_{2}\left(n\right)\right)$ multiplications mod
+p, which is linear in the number of bits of $n$.\end{enumerate}
+\end{enumerate}
+
+\end{document}
