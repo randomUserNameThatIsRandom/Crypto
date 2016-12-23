@@ -5,11 +5,12 @@ m = 90256390764228001
 Zm = Integers(m)
 
 def Q1():
-    aa = [Zm(random.randint(2, m-1)) for _ in range(100)]
-    gcds = [gcd(a, m) for a in aa]
-    max_is = [max_i(a) for a in aa]
+    a_values = [Zm(random.randint(2, m-1)) for _ in range(100)]
+    gcds = [gcd(a, m) for a in a_values]
+    max_is = [max_i(a) for a in a_values]
     i_counts = Counter(max_is)
     print 'number of non coprime a values:', sum(1 for g in gcds if g != 1)
+    # print number of occurrences of each i
     for i in [5,4,3,2,1,None]:
         print '#i=%s:' % i, i_counts[i]
 
@@ -20,9 +21,6 @@ def max_i(a):
         if current != Zm(1) and current != Zm(-1) and prev == Zm(1):
             return i
     return None
-
-
-
 
 if __name__ == '__main__':
     Q1()
