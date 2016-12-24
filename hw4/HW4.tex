@@ -23,7 +23,7 @@
 
 \section{} % 5
 
-We will constuct $B$ as follows: given number $z=g^{y}$
+We will construct $B$ as follows: given number $z=g^{y}$
 \begin{enumerate}
 \setcounter{enumi}{-1}
 \item if z == 1, return $y=0$
@@ -31,7 +31,7 @@ We will constuct $B$ as follows: given number $z=g^{y}$
 \item calculate $z^{r}=g^{yr}$, $r^{-1}$ (using iterated squaring, and xgcd)
 \item run $A\left(z^{r}\right)$
 \begin{itemize}
-\item if it succeeded and returned $yr$, then return $y$ by multipling by $r^{-1}$
+\item if it succeeded and returned $yr$, then return $y$ by multiplying by $r^{-1}$
 \item otherwise, return to step 1
 \item if failed 1000 times, quit
 \end{itemize}
@@ -40,7 +40,7 @@ We will constuct $B$ as follows: given number $z=g^{y}$
 uniformly distributed on $\left[1,p-1\right]$ and $y\in\left[1,p-1\right]$
 then $ry$ is uniformly distributed on that range. And indeed $y\in\left[1,p-1\right]$
 because in step 0 we rule out $y=0$. Therefore there is a $\frac{1}{1000}$
-probability that $yr$ is in the exponents that $A$ can successfuly
+probability that $yr$ is in the exponents that $A$ can successfully
 find. Therefore there is a $\frac{1}{1000}$ that step $3$ succeeds.
 We then get:
 \[
@@ -54,6 +54,22 @@ of B takes $O(n^{2}+n^{k})$. Since there is a constant number of
 iterations, the total runtime is $O(n^{2}+n^{k})=O\left(max\left\{ n^{2},n^{k}\right\} \right)$.
 
 \section{} % 6
+
+\subsection{} % 6.a
+\textbf{Decryption}: Given $ \left<c_1, c_2\right> $:
+\begin{itemize}
+\item Compute $ c_1^x $
+\item If $ c_1^x = c_2 $ return 0,
+\item Otherwise return 1.
+\end{itemize}
+\textbf{Run-Time}: it is clear that this method is efficient, as it requires one exponentiation (which can be done efficiently by iterated squaring). \\
+\textbf{Correctness}:
+\begin{itemize}
+\item  If the encrypted message is $ b = 0 $, then $ c_1^x = \left(g^y\right)^x = \left(g^y\right)^x = h^y = c_2 $. Therefore the decryption will succeed with probability 1.
+\item If the encrypted message is $ b = 1 $, then $ c_1^x = g^{xy} $, $ c_2 =g^z $. Since $ y $ is random and independent from $ z $, then so is $ yx $. This mean that $ \Pr[yx \equiv z \pmod{p}] = \frac{1}{p} $. Therefore $ \Pr[c_1^x \neq c_2] = 1 - \frac{1}{p} $, meaning that the decryption succeeds with some negligible error probability.
+\end{itemize}
+
+\subsection{} % 6.b
 
 \section{} % 7
 
