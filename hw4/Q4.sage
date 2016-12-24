@@ -2,8 +2,8 @@ import string
 TEXT = 'THESE VIOLENT DELIGHTS HAVE VIOLENT ENDS'
 
 def Q4():
-    p = get_prime(min_digits=82, factor_min_digits=72)
-    q = get_prime(min_digits=77, factor_min_digits=70)
+    p = get_prime(min_digits=82)
+    q = get_prime(min_digits=77)
     N = p * q
     phi = (p-1) * (q-1)
     while True:
@@ -31,14 +31,12 @@ def Q4():
     decoded = decode(decrypted)
     print 'Decoded        :', TEXT
 
-
-
-def get_prime(min_digits, factor_min_digits):
+def get_prime(min_digits):
     while True:
-        p = random_prime(10^(min_digits+1), proof=False, lbound=10^(min_digits))
-        max_factor = max([f for f, _ in factor(p-1)])
-        if log_b(max_factor, 10) >= factor_min_digits:
-            return p
+        r = random_prime(10^(min_digits+1), proof=True, lbound=10^(min_digits))
+        s = 2 * r + 1
+        if is_prime(s):
+            return s
 
 def encode(s):
     encoded = 0
