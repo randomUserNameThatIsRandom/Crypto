@@ -23,6 +23,36 @@
 
 \section{} % 5
 
+We will constuct $B$ as follows: given number $z=g^{y}$
+\begin{enumerate}
+\setcounter{enumi}{-1}
+\item if z == 1, return $y=0$
+\item choose random $r\in\left[1,p-1\right]$
+\item calculate $z^{r}=g^{yr}$, $r^{-1}$ (using iterated squaring, and xgcd)
+\item run $A\left(z^{r}\right)$
+\begin{itemize}
+\item if it succeeded and returned $yr$, then return $y$ by multipling by $r^{-1}$
+\item otherwise, return to step 1
+\item if failed 1000 times, quit
+\end{itemize}
+\end{enumerate}
+\textbf{Correctness}: As shown in a previous exercise, if $r$ is
+uniformly distributed on $\left[1,p-1\right]$ and $y\in\left[1,p-1\right]$
+then $ry$ is uniformly distributed on that range. And indeed $y\in\left[1,p-1\right]$
+because in step 0 we rule out $y=0$. Therefore there is a $\frac{1}{1000}$
+probability that $yr$ is in the exponents that $A$ can successfuly
+find. Therefore there is a $\frac{1}{1000}$ that step $3$ succeeds.
+We then get:
+\[
+\Pr\left[\mbox{\ensuremath{B} succeeds}\right]=1-\left(\frac{999}{1000}\right)^{1000}\approx0.63>0.5
+\]
+\textbf{Run time}: step 0 is $O(1)$, choosing $r$ is $O(n)$ when
+$n=\log_{2}\left(p\right)$. Calculating $z^{r}$ by repeated squaring
+is $O(n^{2})$, and xgcd is $O(n)$. $A$ is poly-time in $n$, therefore it runs in time
+$O(n^{k})$ for some $k\ge1$. then we get that a single iteration
+of B takes $O(n^{2}+n^{k})$. Since there is a constant number of
+iterations, the total runtime is $O(n^{2}+n^{k})=O\left(max\left\{ n^{2},n^{k}\right\} \right)$.
+
 \section{} % 6
 
 \section{} % 7
