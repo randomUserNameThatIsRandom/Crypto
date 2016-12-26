@@ -76,7 +76,20 @@ iterations, the total runtime is $O(n^{2}+n^{k})=O\left(max\left\{ n^{2},n^{k}\r
 \section{} % 8
 
 \subsection{} % 8.a
+First, note that if $p,q$ are $n$ bit numbers, then $m=pq$ has at most $2n=O(n)$ bits.
+Computing $a^{2^t}$ using iterated squaring involves $t$ steps of (modular) squaring a number in the range $[0,m-1]$: \[
+a_0=a, a_1=a_0^2=a^2, a_2=a_1^2=a^{2^2}, a_3=a_2^2=a^{2^3}, \ldots, a_t=a_{t-1}^2=a^{2^t}
+\]
+Therefore the number of modular multiplications of $O(n)$ bit numbers is exactly $t$.
 
 \subsection{} % 8.b
+Knowing the factorization of $m$ allows us to compute $\phi(m)=(p-1)(q-1)$. Then, by Euler's theorem we know that $a^{2^t} \equiv a^{2^t \mod{\phi(m)}} \pmod{m}$. Therefore to compute $a^{2^t} \pmod{m}$ we need to calculate: \[
+a_0=a, a_1=a_0^2=a^2, \ldots, a_k=a_{k-1}^2=a^{2^k}
+\]
+where $k$ is the number of bits of $2^t \mod \phi(m)$.
+afterwards we multiply the elements according to the binary representation of $\phi(m)$.
+$\phi(m)$ can have no more than $2n$ bits, therefore we need to perform at most $k+k = 2k \le 4n$ modular multiplications.
+Note that if $2^t < \phi(m)$ then we resort to the first method and perform exactly $t$ multiplication. \\
+So to summarize, we perform no more than $\min \{ t, 4n \}$ multiplications.
 
 \end{document}
