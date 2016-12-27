@@ -16,6 +16,42 @@
 \section{} % 1
 
 \section{} % 2
+We construct a randomized algorithm $A'$ that operates on input $m = pq$ as follows:
+\begin{enumerate}
+\item Draw $y\in Z_{m}^{*}$ uniformly (we do that by drawing from $\{1,...,m-1\}$ and making sure $\gcd(y,m)$ is zero, if it isn't we can factor m using $y$). .
+\item Execute $A$ on input $y^2 \pmod m $ and set $x$ to be its result (note that since $y^2 \pmod m $ is a quadratic residue we will get a number and not  "go catch a Stellagama stellio"). 
+\item If $x = \pm y \pmod m$ and this step was executed less then $c$ times ($c$ being a constant positive integer that will affect the probability of success) go to step one if this step was executed $c$ times, return $0$.
+\item Calculate $w = x  y^{-1} \pmod m$.
+\item Set $k = w+1 \pmod m$ 
+\item Set $z = \frac{k}{2}$.
+\item set $q = gcd(z, m)$ and return $(q, \frac{m}{q})$
+\end{enumerate} 
+We shall now prove that $A'$ runs in $O(t(n))$ and finds a factorization for $m$ with probability $ 1- \frac{1}{2^c}$.
+First note that m executes steps 1 through 3 at most $c$ time (from the restriction in step 3) and each steps takes $O(t(n))$ steps.
+In addition for each execution $A'$ passes step $3$ with probability $\frac{1}{2}$, that is because $y^2$ has four roots in $Z_{m}^{*}$, and only two of them are $\pm y$, since $y$ was chosen uniformly, the probability that the root that $A$ returns for $y^2$ is $ \pm y$  is  $\frac{2}{4} = \frac{1}{2}$.
+Now we prove that if $A'$ passes step 3 it returns a correct factorization.
+
+From the CRT we can write $x = wy$ with 
+\[w = a_1(q^{-1} \pmod p)q + a_2(p^{-1} \pmod q)p\]
+and $a_i \in \{\pm 1\}$ (this is because as stated in the lecture, if $x$ is a root of $y$ then it can be written as $ly$ with $l$ being a root of $1$ in $m$), since we chose x such that $x \neq \pm y$, we know that $a_1 \neq a_2$.\\
+Assume without loss of generality that $a_1 = 1$ and  $a_2 = -1$, thus we have ( $w$ is from step 4)
+\[w = (q^{-1} \pmod p)q - (p^{-1} \pmod q)p \]
+Note that from fermat's little theorem we have 
+\[(q^{-1} \pmod p)= q^{p-2} + cp\]
+\[(p^{-1} \pmod q)= p^{q-2} + rq\]
+Thus 
+\[w = q^{p-1} - p^{q-1} \pmod {pq}\]
+Note that 
+\[q^{p-1} + p^{q-1} = 1 \pmod p\]
+and
+\[q^{p-1} + p^{q-1}  = 1 \pmod q\]
+Hence
+\[q^{p-1} + p^{q-1} \pmod {pq}\]
+Thus
+\[w + 1 = q^{p-1} - p^{q-1} + 1  = q^{p-1} - p^{q-1} + q^{p-1} + p^{q-1} = 2q^{p-1} \pmod {pq}\]
+Therefore when we calculate $z$ in step 6 we obtain $q^{p-1}$ and obviously $\gcd(q^{p-1}, pq) = q$, and thus we indeed recover q and p in step 7 as required, since we got to step 4 in $O(t(n))$ steps and 4 through 7 also take $O(t(n))$ steps, $A'$ is an algorithm as request.
+Randomization is required in our algorithm as we must get a root that is differs from the root we know not only by sign. Since we have no knowledge of what root $A$ will return, and since we cant find another root by ourselves, we must hope $A$ returns a different root, by choosing $y$ randomly many times, the probability we will indeed find a root that is different not only by sign approaches $1$.
+ 
 
 \section{} % 3
 
