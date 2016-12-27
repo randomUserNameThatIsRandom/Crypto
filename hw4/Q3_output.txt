@@ -1,0 +1,37 @@
+p: 57021442427041
+q: 168499908198593
+m: 9608107814307764528141353313
+********************
+Running for f=x^2+c
+- x0=     1, c=     1: factor = q (after 3022422 iterations=0.400254296232311 * sqrt(p))
+- x0= 32151, c=     1: factor = p (after 1779380 iterations=0.235640320785731 * sqrt(p))
+- x0=     7, c=     1: factor = p (after 7117520 iterations=0.942561283142924 * sqrt(p))
+- x0=     1, c=212321: factor = q (after 2124493 iterations=0.281343058833436 * sqrt(p))
+- x0= 32151, c=212321: factor = p (after 3183580 iterations=0.421596180943383 * sqrt(p))
+- x0=     7, c=212321: factor = p (after 6019221 iterations=0.797115381380148 * sqrt(p))
+- x0=     1, c= 35432: factor = p (after 3216320 iterations=0.425931884448270 * sqrt(p))
+- x0= 32151, c= 35432: factor = q (after 4655137 iterations=0.616472016085111 * sqrt(p))
+- x0=     7, c= 35432: factor = p (after 4824480 iterations=0.638897826672404 * sqrt(p))
+- x0=     1, c=     0: factor = ran out of time (after 49502765 iterations=6.55556847013041 * sqrt(p))
+- x0= 32151, c=     0: factor = ran out of time (after 49502765 iterations=6.55556847013041 * sqrt(p))
+- x0=     7, c=     0: factor = ran out of time (after 49502765 iterations=6.55556847013041 * sqrt(p))
+- x0=     1, c=    -1: factor = ran out of time (after 49502765 iterations=6.55556847013041 * sqrt(p))
+- x0= 32151, c=    -1: factor = p (after 9469164 iterations=1.25398556943019 * sqrt(p))
+- x0=     7, c=    -1: factor = q (after 5980593 iterations=0.791999939871695 * sqrt(p))
+********************
+Running for f=x^1+c
+- x0=     1, c=     1: factor = ran out of time (after 49502765 iterations=6.55556847013041 * sqrt(p))
+- x0= 32151, c=     1: factor = ran out of time (after 49502765 iterations=6.55556847013041 * sqrt(p))
+- x0=     7, c=     1: factor = ran out of time (after 49502765 iterations=6.55556847013041 * sqrt(p))
+- x0=     1, c=212321: factor = ran out of time (after 49502765 iterations=6.55556847013041 * sqrt(p))
+- x0= 32151, c=212321: factor = ran out of time (after 49502765 iterations=6.55556847013041 * sqrt(p))
+- x0=     7, c=212321: factor = ran out of time (after 49502765 iterations=6.55556847013041 * sqrt(p))
+- x0=     1, c= 35432: factor = ran out of time (after 49502765 iterations=6.55556847013041 * sqrt(p))
+- x0= 32151, c= 35432: factor = ran out of time (after 49502765 iterations=6.55556847013041 * sqrt(p))
+- x0=     7, c= 35432: factor = ran out of time (after 49502765 iterations=6.55556847013041 * sqrt(p))
+- x0=     1, c=     0: factor = ran out of time (after 49502765 iterations=6.55556847013041 * sqrt(p))
+- x0= 32151, c=     0: factor = ran out of time (after 49502765 iterations=6.55556847013041 * sqrt(p))
+- x0=     7, c=     0: factor = ran out of time (after 49502765 iterations=6.55556847013041 * sqrt(p))
+- x0=     1, c=    -1: factor = ran out of time (after 49502765 iterations=6.55556847013041 * sqrt(p))
+- x0= 32151, c=    -1: factor = ran out of time (after 49502765 iterations=6.55556847013041 * sqrt(p))
+- x0=     7, c=    -1: factor = ran out of time (after 49502765 iterations=6.55556847013041 * sqrt(p))
