@@ -16,8 +16,10 @@
 \section{} % 1
 \lstinputlisting[language=Python, caption=Q1 Code]{Q1.sage}
 \lstinputlisting[caption=Q1 Output]{Q1_output.txt}
-
-\textbf{Explanation}: TODO
+\textbf{Explanation}: Any $a$ with an $i$ as defined in the question is a witness that $m$ is not prime. Define $b := a^{(m-1)/2^i}$.
+b is square  root of $1$ $\pmod{m}$ because:
+\[ b^2 = (a^{(m-1)/2^i})^2 = a^{(m-1)/2^{i-1}} \equiv 1 \pmod{m} \]
+But $b \not \equiv \pm 1 \pmod{m}$, therefore the polynomial $(x-1)^2$ has more than $2$ roots in $\mathbb{Z}_m$, which implies that $\mathbb{Z}_m$ is not a field (otherwise it would be a contradiction to the fundamental theorem of algebra). Therefore $m$ is not a power of a prime number, and specifically, it's not a prime number. 
 
 \section{} % 2
 We construct a randomized algorithm $A'$ that operates on input $m = pq$ as follows:
