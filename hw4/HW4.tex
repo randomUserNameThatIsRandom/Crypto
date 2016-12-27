@@ -57,7 +57,7 @@ Note that
 and
 \[q^{p-1} + p^{q-1}  = 1 \pmod q\]
 Hence
-\[q^{p-1} + p^{q-1} \pmod {pq}\]
+\[q^{p-1} + p^{q-1} \pmod {pq} = 1\]
 Thus
 \[w + 1 = q^{p-1} - p^{q-1} + 1  = q^{p-1} - p^{q-1} + q^{p-1} + p^{q-1} = 2q^{p-1} \pmod {pq}\]
 Therefore when we calculate $z$ in step 6 we obtain $q^{p-1}$ and obviously $\gcd(q^{p-1}, pq) = q$, and thus we indeed recover q and p in step 7 as required, since we got to step 4 in $O(t(n))$ steps and 4 through 7 also take $O(t(n))$ steps, $A'$ is an algorithm as request.
@@ -150,7 +150,27 @@ iterations, the total runtime is $O(n^{2}+n^{k})=O\left(max\left\{ n^{2},n^{k}\r
 \end{itemize}
 
 \subsection{} % 6.b
+Assume that this encryption scheme is not $\epsilon CPA$ secure, then there is a polynomial adversary $A$ that wins the adversarial indistinguishability test with probability $ > \frac{1}{2} + \epsilon$.
+We construct a polynomial time adversary $A'$ that shows DDH is not hard:
+Given input $(g^x,g^y,g^z)$ our algorithm does the following:
+\begin{itemize}
+\item Supply $A$ with $(p, g, g^x)$.
+\item Get the two messages from $A$ assume WLOG $A$ replays with $m_0 = 0$, $m_1 = 1$ (if this is not the case we can construct an algorithm $B$ that is based on $A$ and wins with the same probability, since if the messages are in a different order $B$ can change the order and if both messages have the same value $A$ can only guess which bit was chosen as both will be encrypted to the same value and $B$ can supply us with two messages and also guess and win with the same probability).
+\item Supply $A$ with $(g^y, g^z)$, if $A$ returns 1 return 0, else return 1.  
+\end{itemize}
+We shall now show that $A'$ distinguishes $(g^x,g^y,g^z)$ from $(g^x,g^y,g^{xy})$:
+\begin{align*}
+&\Pr_{x,y \leftarrow U_{\mathbb{Z^*}_{p}}, z= xy}(A'(g^x, g^y, g^{z}) = 1) - \Pr_{x,y,z \leftarrow U_{\mathbb{Z^*}_{p}}}(A'(g^x, g^y, g^z) = 1)\\
+& = \Pr(A'(g^x, g^y, g^{z}) = 1| x,y \leftarrow U_{\mathbb{Z^*}_{p}}, z= xy) - \Pr(A'(g^x, g^y, g^z) = 1| x,y,z \leftarrow U_{\mathbb{Z^*}_{p}})\\
+&= \Pr(A \mbox{  wins } | b = 1) - \Pr(A \mbox{  loses }| b = 0)\\
+&= 2[\Pr(A \mbox{  wins } \cap b = 1) - \Pr(A \mbox{  loses }\cap b = 0)]\\
+&= 2[\Pr(A \mbox{  wins } \cap b = 1) - \Pr(b = 0) + \Pr(A \mbox{  wins }\cap b = 0)]\\
+&= 2[\Pr(A \mbox{  wins }) - \Pr(b = 0) ]\\
+&\geq 2[\frac{1}{2} + \epsilon - \frac{1}{2}] = 2\epsilon
+\end{align*}
 
+Note that in our calculation we refer to the probability that $x,y,z$ are drawn uniformly or $z=xy$ (this is $b$ as defined in the adversarial indistinguishability test) , each case has probability $\frac{1}{2}$ as we are in a distinguisher setup and thus are supplied with a sample from each distribution with equal probability (otherwise the streams are distinguishable by always saying that the current input originated from the stream with higher probability to be sampled).
+Thus $A'$ is a distinguisher as required.
 \section{} % 7
 Let $i \leftarrow U_t$ be the random index $A_1$ chooses. $b \leftarrow U_{0,1}$. $c^i = E_{pk}(m_b^i)$. Denote $A(x)$ the answer of an adversary $A$, given a cipher $x$. We have:
 \begin{align*}
