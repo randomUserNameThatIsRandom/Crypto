@@ -72,6 +72,34 @@ iterations, the total runtime is $O(n^{2}+n^{k})=O\left(max\left\{ n^{2},n^{k}\r
 \subsection{} % 6.b
 
 \section{} % 7
+Let $i \leftarrow U_t$ be the random index $A_1$ chooses. $b \leftarrow U_{0,1}$. $c^i = E_{pk}(m_b^i)$. Denote $A(x)$ the answer of an adversary $A$, given a cipher $x$.
+\begin{align*}
+\frac{1}{2} + \varepsilon \ge &Pr[\mbox{\ensuremath{A_1} wins}] \\
+= &Pr[A_1(c^i)=b] \\
+= &\frac{1}{2} \sum_{d \in \{0,1\}} Pr[A_1(c^i)=d \mid b=d] \\
+= &\frac{1}{2t} \sum_{d \in \{0,1\}} \sum_{k=1}^t Pr[A_1(c^i)=d \mid b=d \wedge i=k] \\
+=  &\frac{1}{2t} \sum_{d \in \{0,1\}} \sum_{k=1}^t Pr[A_1(E_{pk}(m_d^k))=d \mid b=d \wedge i=k] \\
+=  &\frac{1}{2t} \sum_{d \in \{0,1\}} \sum_{k=1}^t Pr[A_{mult}(E_{pk}(m_0^1, \ldots, m_0^{k-1}, m_d^k, m_1^{k+1}, \ldots, m_1^t))=d] \\
+= &\frac{1}{2t} ( 
+  Pr[A_{mult}(E_{pk}(m_0^1, \ldots, m_0^t))=0] + \\
+& Pr[A_{mult}(E_{pk}(m_1^1, \ldots, m_1^t))=1] + \\
+& \sum_{k=1}^{t-1} \left( Pr[A_{mult}(E_{pk}(m_0^1, \ldots, m_0^k, m_1^{k+1}, \ldots, m_1^t))=0] + Pr[A_{mult}(E_{pk}(m_0^1, \ldots, m_0^k, m_1^{k+1}, \ldots, m_1^t))=1] \right)
+ ) \\
+= &\frac{1}{2t} ( 
+  Pr[A_{mult}(E_{pk}(m_0^1, \ldots, m_0^t))=0] + \\
+& Pr[A_{mult}(E_{pk}(m_1^1, \ldots, m_1^t))=1] + \\
+& t-1 ) \\
+= &\frac{1}{2t} (2 \cdot Pr[\mbox{\ensuremath{A_{mult}} wins}] + t-1) \\
+= &\frac{1}{t} Pr[\mbox{\ensuremath{A_{mult}} wins}] + \frac{1}{2} - \frac{1}{2t}
+\end{align*}
+
+Therefore:
+\begin{align*}
+Pr[\mbox{\ensuremath{A_{mult}} wins}] 
+\le t(\frac{1}{2} + \varepsilon - \frac{1}{2} + \frac{1}{2t})
+= \frac{1}{2} + t \varepsilon
+\end{align*}
+
 
 \section{} % 8
 
