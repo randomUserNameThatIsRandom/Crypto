@@ -33,7 +33,9 @@ def Q4():
 
 def get_prime(min_digits):
     while True:
-        r = random_prime(10^(min_digits+1), proof=True, lbound=10^(min_digits))
+        r = random_prime(10^(min_digits+1),
+                         proof=True,
+                         lbound=10^(min_digits))
         s = 2 * r + 1
         if is_prime(s):
             return s
