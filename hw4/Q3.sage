@@ -20,8 +20,6 @@ def Q3():
                     text = 'p'
                 elif factor == q:
                     text = 'q'
-                elif factor == m:
-                    text = 'm = pq'
                 else:
                     text = 'ran out of time'
                 relative_iterations = float(i) / p^0.5
@@ -38,6 +36,8 @@ def rho(f, x0, m, max_iterations):
         g = gcd(m, y - x)
         if g > 2 and g < m:
             break
+    else:
+        return 1, max_iterations
     return g, i + 1
 
 if __name__ == '__main__':
