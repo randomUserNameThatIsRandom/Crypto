@@ -75,23 +75,23 @@ iterations, the total runtime is $O(n^{2}+n^{k})=O\left(max\left\{ n^{2},n^{k}\r
 Let $i \leftarrow U_t$ be the random index $A_1$ chooses. $b \leftarrow U_{0,1}$. $c^i = E_{pk}(m_b^i)$. Denote $A(x)$ the answer of an adversary $A$, given a cipher $x$. We have:
 \begin{align*}
 &\frac{1}{2} + \varepsilon \\
-\mbox{(\ensuremath{\varepsilon}-CPA secure)} \ge &Pr[\mbox{\ensuremath{A_1} wins}] \\
-\mbox{(by definition)} = &Pr[A_1(c^i)=b] \\
-\mbox{(total probability)} = &\frac{1}{2} \sum_{d \in \{0,1\}} Pr[A_1(c^i)=d \mid b=d] \\
-\mbox{(total probability)} = &\frac{1}{2t} \sum_{d \in \{0,1\}} \sum_{k=1}^t Pr[A_1(c^i)=d \mid b=d \wedge i=k] \\
-\mbox{(by definition)} =  &\frac{1}{2t} \sum_{d \in \{0,1\}} \sum_{k=1}^t Pr[A_1(E_{pk}(m_d^k))=d \mid b=d \wedge i=k] \\
-\mbox{(by definition)} =  &\frac{1}{2t} \sum_{d \in \{0,1\}} \sum_{k=1}^t Pr[A_{mult}(E_{pk}(m_0^1, \ldots, m_0^{k-1}, m_d^k, m_1^{k+1}, \ldots, m_1^t))=d] \\
+\mbox{(\ensuremath{\varepsilon}-CPA secure)} \ge &\Pr[\mbox{\ensuremath{A_1} wins}] \\
+\mbox{(by definition)} = &\Pr[A_1(c^i)=b] \\
+\mbox{(total probability)} = &\frac{1}{2} \sum_{d \in \{0,1\}} \Pr[A_1(c^i)=d \mid b=d] \\
+\mbox{(total probability)} = &\frac{1}{2t} \sum_{d \in \{0,1\}} \sum_{k=1}^t \Pr[A_1(c^i)=d \mid b=d \wedge i=k] \\
+\mbox{(by definition)} =  &\frac{1}{2t} \sum_{d \in \{0,1\}} \sum_{k=1}^t \Pr[A_1(E_{pk}(m_d^k))=d \mid b=d \wedge i=k] \\
+\mbox{(by definition)} =  &\frac{1}{2t} \sum_{d \in \{0,1\}} \sum_{k=1}^t \Pr[A_{mult}(E_{pk}(m_0^1, \ldots, m_0^{k-1}, m_d^k, m_1^{k+1}, \ldots, m_1^t))=d] \\
 \mbox{(sum reorder)} = &\frac{1}{2t} \Bigg{(}
-	\overbrace{\sum_{d \in \{0,1\}} Pr[A_{mult}(E_{pk}(m_d^1, \ldots, m_d^t))=d]}^{=2 \cdot Pr[\mbox{\ensuremath{A_{mult}} wins}]} \\
-& + \sum_{k=1}^{t-1} \overbrace{\sum_{d \in \{0,1\}} Pr[A_{mult}(E_{pk}(m_0^1, \ldots, m_0^k, m_1^{k+1}, \ldots, m_1^t))=d]}^{=1}
+	\overbrace{\sum_{d \in \{0,1\}} \Pr[A_{mult}(E_{pk}(m_d^1, \ldots, m_d^t))=d]}^{=2 \cdot \Pr[\mbox{\ensuremath{A_{mult}} wins}]} \\
+& + \sum_{k=1}^{t-1} \overbrace{\sum_{d \in \{0,1\}} \Pr[A_{mult}(E_{pk}(m_0^1, \ldots, m_0^k, m_1^{k+1}, \ldots, m_1^t))=d]}^{=1}
  \Bigg{)} \\
-\mbox{(simplification)} = &\frac{1}{2t} ( 2 \cdot Pr[\mbox{\ensuremath{A_{mult}} wins}] + t-1 ) \\
-\mbox{(simplification)} = &\frac{1}{t} Pr[\mbox{\ensuremath{A_{mult}} wins}] + \frac{1}{2} - \frac{1}{2t}
+\mbox{(simplification)} = &\frac{1}{2t} ( 2 \cdot \Pr[\mbox{\ensuremath{A_{mult}} wins}] + t-1 ) \\
+\mbox{(simplification)} = &\frac{1}{t} \Pr[\mbox{\ensuremath{A_{mult}} wins}] + \frac{1}{2} - \frac{1}{2t}
 \end{align*}
 
 Therefore:
 \begin{align*}
-Pr[\mbox{\ensuremath{A_{mult}} wins}] 
+\Pr[\mbox{\ensuremath{A_{mult}} wins}] 
 \le t(\frac{1}{2} + \varepsilon - \frac{1}{2} + \frac{1}{2t})
 = \frac{1}{2} + t \varepsilon
 = \frac{1}{2} + \varepsilon_t
