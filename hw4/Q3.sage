@@ -35,8 +35,8 @@ def rho(f, x0, m, max_iterations):
     for i in xrange(max_iterations):
         x = f(x)
         y = f(f(y))
-        g = gcd(m, abs(x-y))
-        if g != 1:
+        g = gcd(m, y - x)
+        if g > 2 and g < m:
             break
     return g, i + 1
 
