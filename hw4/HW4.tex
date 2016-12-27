@@ -67,9 +67,21 @@ Randomization is required in our algorithm as we must get a root that is differs
 \section{} % 3
 \lstinputlisting[language=Python, caption=Q3 Code]{Q3.sage}
 \lstinputlisting[caption=Q3 Output, breaklines=true]{Q3_output.txt}
-\textbf{Explanation}: TODO
+
 \subsection{} % 3.a
+Based on the results of this small scale experiment we can recommend not to choose $c=0$ or $x_0=1,c=-1$ as the algorithm would fail to factor a big number as in our case (in reasonable time).
+Other than that, for all the other values we tried, the time it took to factor $m$ was about $[0.3, 3] \cdot \sqrt{p}$ iterations, which is the expected average case for this algorithm. Without further investigation we cannot recommend particular values which would give good results for any values of $m$.
+
 \subsection{} % 3.b
+With the linear function $f(x)=x+c$ non of the program executions terminated (in the time frame of $5 m^{\frac{1}{4}}$ iterations). This is because the function $f$ is indeed not random at all. Observe that
+$f^k(x) = x + k \cdot c$. The algorithm ends when:
+\begin{align*}
+     & gcd(m, y - x) \neq 1 \\
+\iff & gcd(m, f^{2k}(x_0) - f^{k}(x_0)) \neq 1 \\
+\iff & gcd(m, x_0 + 2kc - x_0 - kc) \neq 1 \\
+\iff & gcd(m, kc) \neq 1
+\end{align*}
+Therefore it will halt only after $min\{p,q\}$ steps (unless $c \mid m$, which is unlikely).
 
 \section{} % 4
 \lstinputlisting[language=Python, caption=Q4 Code]{Q4.sage}
