@@ -52,7 +52,7 @@ Note that
 and
 \[q^{p-1} + p^{q-1}  = 1 \pmod q\]
 Hence
-\[q^{p-1} + p^{q-1} \pmod {pq}\]
+\[q^{p-1} + p^{q-1} \pmod {pq} = 1\]
 Thus
 \[w + 1 = q^{p-1} - p^{q-1} + 1  = q^{p-1} - p^{q-1} + q^{p-1} + p^{q-1} = 2q^{p-1} \pmod {pq}\]
 Therefore when we calculate $z$ in step 6 we obtain $q^{p-1}$ and obviously $\gcd(q^{p-1}, pq) = q$, and thus we indeed recover q and p in step 7 as required, since we got to step 4 in $O(t(n))$ steps and 4 through 7 also take $O(t(n))$ steps, $A'$ is an algorithm as request.
