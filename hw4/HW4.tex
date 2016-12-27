@@ -63,8 +63,26 @@ Randomization is required in our algorithm as we must get a root that is differs
 \lstinputlisting[language=Python, caption=Q3 Code]{Q3.sage}
 \lstinputlisting[caption=Q3 Output]{Q3_output.txt}
 \textbf{Explanation}: TODO
+\subsection{} % 3.a
+\subsection{} % 3.b
 
 \section{} % 4
+\lstinputlisting[language=Python, caption=Q4 Code]{Q4.sage}
+\lstinputlisting[caption=Q4 Output]{Q4_output.txt}
+\textbf{Explanation}: TODO
+\subsection{} % 4.a
+As hinted at the course forum (http://tau-crypto-f16.wikidot.com/forum/t-2034665/some-ex04-questions-for-q2-q4-and-q5) the way we chose the primes is as follows:
+\begin{enumerate}
+\item Get a random prime number $r$ of the requested size,
+\item Calculate $s = 2r + 1$ 
+\item Check if $s$ is also a prime:\\
+ If it is - return it. \\
+ Otherwise go the step $1$.
+\end{enumerate}
+In other words: $p, q$ were drawn randomly from the set $\left\{ x \in \mbox{Primes} \mid \frac{x-1}{2} \in \mbox{Primes} \right\}$, with the restriction on minimum size of the primes.
+
+\subsection{} % 4.b
+Required results are in Listing 6: Q4 Output.
 
 \section{} % 5
 
