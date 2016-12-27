@@ -85,6 +85,7 @@ Therefore it will halt only after $min\{p,q\}$ steps (unless $c \mid m$, which i
 
 \section{} % 4
 \lstinputlisting[language=Python, caption=Q4 Code]{Q4.sage}
+\pagebreak
 \lstinputlisting[caption=Q4 Output]{Q4_output.txt}
 \textbf{Explanation}: TODO
 \subsection{} % 4.a
@@ -171,6 +172,7 @@ We shall now show that $A'$ distinguishes $(g^x,g^y,g^z)$ from $(g^x,g^y,g^{xy})
 
 Note that in our calculation we refer to the probability that $x,y,z$ are drawn uniformly or $z=xy$ (this is $b$ as defined in the adversarial indistinguishability test) , each case has probability $\frac{1}{2}$ as we are in a distinguisher setup and thus are supplied with a sample from each distribution with equal probability (otherwise the streams are distinguishable by always saying that the current input originated from the stream with higher probability to be sampled).
 Thus $A'$ is a distinguisher as required.
+
 \section{} % 7
 Let $i \leftarrow U_t$ be the random index $A_1$ chooses. $b \leftarrow U_{0,1}$. $c^i = E_{pk}(m_b^i)$. Denote $A(x)$ the answer of an adversary $A$, given a cipher $x$. We have:
 \begin{align*}
@@ -198,7 +200,7 @@ Therefore:
 \ \ \ \ \ \square
 \end{align*}
 
-
+\pagebreak
 \section{} % 8
 
 \subsection{} % 8.a
