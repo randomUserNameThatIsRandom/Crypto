@@ -31,7 +31,7 @@ We construct a randomized algorithm $A'$ that operates on input $m = pq$ as foll
 \begin{enumerate}
 \item Draw $y\in Z_{m}^{*}$ uniformly (we do that by drawing from $\{1,...,m-1\}$ and making sure $\gcd(y,m)$ is zero, if it isn't we can factor m using $y$). .
 \item Execute $A$ on input $y^2 \pmod m $ and set $x$ to be its result (note that since $y^2 \pmod m $ is a quadratic residue we will get a number and not  "go catch a Stellagama stellio"). 
-\item If $x = \pm y \pmod m$ and this step was executed less then $c$ times ($c$ being a constant positive integer that will affect the probability of success) go to step one if this step was executed $c$ times, return $0$.
+\item If $x = \pm y \pmod m$ and this step was executed less then $c$ times ($c$ being a constant positive integer that will affect the probability of success) go to step one. If this step was executed $c$ times, return $0$.
 \item Calculate $w = x  y^{-1} \pmod m$.
 \item Set $k = w+1 \pmod m$ 
 \item Set $z = \frac{k}{2}$.
@@ -104,51 +104,35 @@ Required results are in Listing 6: Q4 Output.
 
 \section{} % 5
 
-We will construct $B$ as follows: given number $z=g^{y}$
-\begin{enumerate}
-\setcounter{enumi}{-1}
-\item if z == 1, return $y=0$
-\item choose random $r\in\left[1,p-1\right]$
-\item calculate $z^{r}=g^{yr}$, $r^{-1}$ (using iterated squaring, and xgcd)
-\item run $A\left(z^{r}\right)$
+We construct a polytime algorithm $A'$ that on input $p, g,g^x$ does the following:
 \begin{itemize}
-\item if it succeeded and returned $yr$, then return $y$ by multiplying by $r^{-1}$
-\item otherwise, return to step 1
-\item if failed 1000 times, quit
+\item Draw $x\in \mathbb{Z^*}_{p}$ uniformly.
+\item Execute $A$ on $p, g, g^{x+y}$ (note that $g^{x+y} = g^x g^y$), set $z$ to be the result.
+\item  If $g^z = g^{x+y}$ return $z - y$, else if this is the 700'th time return 0, else go to the first step.
 \end{itemize}
-\end{enumerate}
-\textbf{Correctness}: As shown in a previous exercise, if $r$ is
-uniformly distributed on $\left[1,p-1\right]$ and $y\in\left[1,p-1\right]$
-then $ry$ is uniformly distributed on that range. And indeed $y\in\left[1,p-1\right]$
-because in step 0 we rule out $y=0$. Therefore there is a $\frac{1}{1000}$
-probability that $yr$ is in the exponents that $A$ can successfully
-find. Therefore there is a $\frac{1}{1000}$ that step $3$ succeeds.
-We then get:
-\[
-\Pr\left[\mbox{\ensuremath{B} succeeds}\right]=1-\left(\frac{999}{1000}\right)^{1000}\approx0.63>0.5
-\]
-\textbf{Run time}: step 0 is $O(1)$, choosing $r$ is $O(n)$ when
-$n=\log_{2}\left(p\right)$. Calculating $z^{r}$ by repeated squaring
-is $O(n^{2})$, and xgcd is $O(n)$. $A$ is poly-time in $n$, therefore it runs in time
-$O(n^{k})$ for some $k\ge1$. then we get that a single iteration
-of B takes $O(n^{2}+n^{k})$. Since there is a constant number of
-iterations, the total runtime is $O(n^{2}+n^{k})=O\left(max\left\{ n^{2},n^{k}\right\} \right)$.
+First note that this algorithm is polynomial as it executes $A$ at most 700 times, and $A$ is polynomial.
+For each iteration the probability of landing within the subset of $x's$ for which $A$ finds and inverse is $\frac{1}{1000}$ as the sum of a uniform random variable and a constant is uniform. Hence with probability $\frac{1}{1000}$ we obtain the correct z in the last step, note that
+\[g^{z-y} = g^z g^{-y} = g^{x+y}  g^{-y} = g^x\]
+Thus $z-y$ is a solution to the DL problem.
+The last step in $A$ fails only if $x+y$  is not inside the set for which $A$ solves the DL problem, this probability is $\frac{1}{1000}$ because $x+y$ distributes uniformly over $\mathbb{Z^*}_{p}$.
+
+Because $A'$ makes 700 tries before returning with a false result, the probability that $A'$ fails is the probability that $A$ fails at each attempt which is $ (1-\frac{1}{1000})^{700} < \frac{1}{2}$.
+Thus $A'$ is an algorithm as requested.
 
 \section{} % 6
 
 \subsection{} % 6.a
-\textbf{Decryption}: Given $ \left<c_1, c_2\right> $:
-\begin{itemize}
-\item Compute $ c_1^x $
-\item If $ c_1^x = c_2 $ return 0,
-\item Otherwise return 1.
-\end{itemize}
-\textbf{Run-Time}: it is clear that this method is efficient, as it requires one exponentiation (which can be done efficiently by iterated squaring). \\
-\textbf{Correctness}:
-\begin{itemize}
-\item  If the encrypted message is $ b = 0 $, then $ c_1^x = \left(g^y\right)^x = \left(g^y\right)^x = h^y = c_2 $. Therefore the decryption will succeed with probability 1.
-\item If the encrypted message is $ b = 1 $, then $ c_1^x = g^{xy} $, $ c_2 =g^z $. Since $ y $ is random and independent from $ z $, then so is $ yx $. This mean that $ \Pr[yx \equiv z \pmod{p}] = \frac{1}{p} $. Therefore $ \Pr[c_1^x \neq c_2] = 1 - \frac{1}{p} $, meaning that the decryption succeeds with some negligible error probability.
-\end{itemize}
+We construct a the decryption function:
+\[
+Dec(c_1, c_2) = 
+\begin{cases}
+	 1 &\mbox{if }  c_1^x = c_2 \\ 
+	 0 &\mbox{else}
+\end{cases} 
+\]
+If $b=0$, then $c_2 = h^y = g^{xy} = c_1^x $, thus if $b=0$ $Dec$ returns the correct result.\\
+If $b=1$ then given $z$ there is exactly one value of $y$ for which $g^y = g^{zx}$ since $g$ is a multiplicative generator, if  $g^y = g^{zx}$ then $y = zx \pmod {p-1}$, the only case in which we decrypt a $1$ to $0$ is if $y = xz$ which happens with probability at most $\frac{1}{p - 1}$.
+Thus correct and efficient decryption is possible except for a negligible probability.
 
 \subsection{} % 6.b
 Assume that this encryption scheme is not $\epsilon CPA$ secure, then there is a polynomial adversary $A$ that wins the adversarial indistinguishability test with probability $ > \frac{1}{2} + \epsilon$.
@@ -200,7 +184,6 @@ Therefore:
 \ \ \ \ \ \square
 \end{align*}
 
-\pagebreak
 \section{} % 8
 
 \subsection{} % 8.a
