@@ -29,8 +29,7 @@ But $b \not \equiv \pm 1 \pmod{m}$, therefore the polynomial $(x-1)^2$ has more 
 \section{} % 2
 We construct a randomized algorithm $A'$ that operates on input $m = pq$ as follows:
 \begin{enumerate}
-\item Draw $y\in Z_{m}^{*}$ uniformly (we do that by drawing from $\{1,...,m-1\}$ and making sure $\gcd(y,m)$ is zero, if it isn't we can factor m using $y$). .
-\item Draw $y\in Z_{m}^{*}$ uniformly (we do that by drawing from $\{1,...,m-1\}$ and making sure $\gcd(y,m)$ is $1$, if it isn't we can factor m using it).
+\item Draw $y\in Z_{m}^{*}$ uniformly (we do that by drawing from $\{1,...,m-1\}$ and making sure $\gcd(y,m)$ is $1$, if it isn't we can factor m using $y$). .
 \item Execute $A$ on input $y^2 \pmod m $ and set $x$ to be its result (note that since $y^2 \pmod m $ is a quadratic residue we will get a number and not  "go catch a Stellagama stellio"). 
 \item If $x = \pm y \pmod m$ and this step was executed less then $c$ times ($c$ being a constant positive integer that will affect the probability of success) go to step one. If this step was executed $c$ times, return $0$.
 \item Calculate $w = x  y^{-1} \pmod m$.
