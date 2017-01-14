@@ -386,5 +386,80 @@ XXXX
 1.d
 \end_layout
 
+\begin_layout Standard
+We will require an additional OWP 
+\begin_inset Formula $g$
+\end_inset
+
+.
+ Set 
+\begin_inset Formula $y'=g^{n}(x)$
+\end_inset
+
+.
+ Modify the signature of message 
+\begin_inset Formula $m$
+\end_inset
+
+ to be 
+\begin_inset Formula $\left(f^{n-m}(x),g^{m}(x)\right)$
+\end_inset
+
+.
+ The verification of a pair 
+\begin_inset Formula $\left(m,\left(\sigma_{1},\sigma_{2}\right)\right)$
+\end_inset
+
+ will be to check that 
+\begin_inset Formula $f^{m}(\sigma_{1})=y$
+\end_inset
+
+ and that 
+\begin_inset Formula $g^{n-m}(\sigma_{2})=y'$
+\end_inset
+
+.
+ Indeed, if 
+\begin_inset Formula $\left(\sigma_{1},\sigma_{2}\right)$
+\end_inset
+
+ is a correct signature of 
+\begin_inset Formula $m$
+\end_inset
+
+ then:
+\begin_inset Formula 
+\begin{align*}
+f^{m}(\sigma_{1}) & =f^{m+n-m}(x)=f^{n}(x)=y\\
+g^{n-m}(\sigma_{2}) & =g^{n-m+m}(x)=g^{n}(x)=y'
+\end{align*}
+
+\end_inset
+
+The first part of the signature pair is exaclty like in the original scheme,
+ and the second part 
+\begin_inset Quotes eld
+\end_inset
+
+doesn't give information
+\begin_inset Quotes erd
+\end_inset
+
+ over the first part.
+ Therefore the proof of (1.c) will still hold, preventing forging of sigmatures
+ for 
+\begin_inset Formula $m'>m$
+\end_inset
+
+.
+ The second part of the signature works in a similar way to prevent forging
+ messages 
+\begin_inset Formula $m'<m$
+\end_inset
+
+.
+ Therefore this is indeed a one-time signature scheme.
+\end_layout
+
 \end_body
 \end_document
