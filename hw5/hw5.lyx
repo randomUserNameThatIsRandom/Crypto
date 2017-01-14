@@ -137,7 +137,112 @@ f^{n-(m-1)}(x)=f^{n-m+1}(x)=f(f^{n-m}(x))=f(\sigma)
 \end_layout
 
 \begin_layout Standard
+Assume by contradiction that 
+\begin_inset Formula $f^{k}$
+\end_inset
 
+ is not OWP, i.e.
+ there is an adversary 
+\begin_inset Formula $A'$
+\end_inset
+
+ s.t.
+ 
+\begin_inset Formula $\Pr_{x}\left[A'(f^{k}(x))=x\right]\ge\varepsilon$
+\end_inset
+
+.
+ Then we construct and adversary 
+\begin_inset Formula $A$
+\end_inset
+
+ as follows: given 
+\begin_inset Formula $y=f(x)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Enumerate
+Calculate 
+\begin_inset Formula $x'=A'(y)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Calculate and return 
+\begin_inset Formula $f^{k-1}(x')$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Indeed, if 
+\begin_inset Formula $A'$
+\end_inset
+
+ inverts 
+\begin_inset Formula $f^{k}$
+\end_inset
+
+ successfuly, then: 
+\begin_inset Formula 
+\[
+x'=f^{-k}(y)=f^{-k}(f(x))=f^{-k+1}(x)
+\]
+
+\end_inset
+
+ And thus the second step yields: 
+\begin_inset Formula $f^{k-1}(f^{-k+1}(x))=f^{0}(x)=x$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $A$
+\end_inset
+
+ runs in polinomial time because 
+\begin_inset Formula $k$
+\end_inset
+
+ is polynomial in.
+ Therefore 
+\begin_inset Formula $A$
+\end_inset
+
+ is a PPT adversary that inverts 
+\begin_inset Formula $f$
+\end_inset
+
+ with probability 
+\begin_inset Formula $\ge\varepsilon$
+\end_inset
+
+, which is a contradition to 
+\begin_inset Formula $f$
+\end_inset
+
+ being a OWP.
+ Therefore 
+\begin_inset Formula $f^{k}$
+\end_inset
+
+ is a OWP.
+\end_layout
+
+\begin_layout Subsection*
+1.c
+\end_layout
+
+\begin_layout Subsection*
+1.d
 \end_layout
 
 \end_body
