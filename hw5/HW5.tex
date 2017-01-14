@@ -81,7 +81,7 @@ Assume we are given such an algorithm $A$ that breaks $(\epsilon,t)$-existential
 \end{itemize}
 \item If $r=1$
 \begin{itemize}
-\item Publish that our public key is $pk$ (the private key that belongs to the oracle we are trying to break).
+\item Publish that our public key is $pk$ (the public key that belongs to the oracle we are trying to break).
 \item For the first message $A$ asks for, $m_1$ generate keys $(pk_2, sk_2)$ and ask the oracle to sign $(pk_2, m_1 )$
 \end{itemize}
 
@@ -97,11 +97,31 @@ Note that $A$ is able to forge a signature with probability $> \epsilon$ which m
 
 \section{}%4
 \subsection{}%4.a
-
+Indeed, assume that $y\notin{QR}$ then there are two options:
+\begin{itemize}
+\item If in the first step $P$ sent $z$ such that $z = r^2$ (i.e. $z$ is a quadratic residue) then with probability $\frac{1}{2}$- $V$ will choose $b=1$ in step 2 in which case there is no $a_1$ that satisfies $a_1^2 = zy$ because if there was such an $a_1$ then $y = (a_1z^{-1})^2$ which contradicts the assumption that $y\notin{QR}$.
+Hence with probability at least $\frac{1}{2}$ - $V$ rejects.
+\item If in the first step $P$ sends $z$ such that $z$ is not a quadratic residue then if $P$ chooses $b=0$ in the second step then $P$ cannot send $r$ in the third step (because no such $r$ exists by definition, regardless of $P$'s computational limitations). Hence with probability at least $\frac{1}{2}$ - $V$ rejects.
+\end{itemize}
+Thus regardless of what $P$ sends in the first step there is a probability of at least $\frac{1}{2}$ that $V$ will reject if $y\notin{QR}$ (meaning it will accept with probability $\leq \frac{1}{2}$).
+As requested.
 \subsection{}%4.b
+Indeed, we show a simulator that operates on input $(y,b)$:
+\begin{itemize}
+\item If $b = 0$:
+\begin{itemize}
+\item Draw $r\in \mathbb{Z^*}_{N}$ and set $\tilde{z} = r^2$
+\item Set $\tilde{a_0} = r$.
+\end{itemize}
+\item If $b=1$
+\begin{itemize}
+\item Draw $\tilde{a_1} \in \mathbb{Z^*}_{N}$ uniformly.
+\item Set  $\tilde{z} = \tilde{a_1}^2 y^{-1} \pmod{N}$
+\end{itemize}
+\end{itemize}
+Then the output of this simulator is Indeed indistinguishable from a true execution of the protocol since if $b=0$ then we send values that would have made the verifier accept (we send a quadratic residue and then its root) and if $b=1$ we send $\tilde{z} = \tilde{a_1}^2 y^{-1} \pmod{N}$ and thus $\tilde{z}y = \tilde{a_1}^2  \pmod{N}$, hence the verifier would except. Since by assumption quadratic residues are polynomially indistinguishable form non quadratic residues $\tilde{z}$ is indistinguishable form a uniformly drawn quadratic residue and thus the view is indistinguishable from a successful transaction between the prover and verifier.
 
 \section{}%5
-
 \section{}%6
 \subsection{}%6.a
 
