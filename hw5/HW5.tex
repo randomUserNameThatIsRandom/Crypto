@@ -36,7 +36,7 @@ We define an algorithm $A'$ that does the following on input x calculates $f^k(x
 \[\Pr_{x\leftarrow \{0,1\}^n}(A'(x) = x) = \Pr_{x\leftarrow \{0,1\}^n}(A(f^k(x) = x) > \epsilon\]
 Leading the a contradiction to the assumption that $f$ is a OWP, hence no such $A$ exists and $f^k$ is also a OWP.
 \subsection{}%1.c
-ndeed, assuming that there is some polynomial algorithm $A$ such that for some $m\in\{1,...n\}$, $\sigma_m = f^{n-m}(m)$ and $m'>m$, $A$ satisfies:
+Indeed, assuming that there is some polynomial algorithm $A$ such that for some $m\in\{1,...n\}$, $\sigma_m = f^{n-m}(m)$ and $m'>m$, $A$ satisfies:
 \[\Pr_{x\leftarrow \{0,1\}^n}(A(\sigma_m) = \sigma(m') = f^{n-m'}(x)) > \epsilon\]
 We construct a polynomial algorithm $A'$ that inverts $f$ with the same probability, on input $f(w)$ $A'$ will do the following:
 \begin{itemize}
