@@ -30,10 +30,10 @@ First we show that $f^k$ is also a permutation, we do so using induction:\\
 For the base case where $k = 1$ this is true from the definition of $f$.
 Now assume that $f^{k-1}$ is a permutation, let $x\in\{0,1\}^n$ then $x$ has a source under $f$ (as $f$ is a permutation), namely there exists $y\in\{0,1\}^n$ such that $f(y) = x$, from the induction assumption we know that $f^{k-1}$ is a permutation and thus $y$ has a source $z\in\{0,1\}^n$ such that $f^{k-1}(z) = y$, thus $f(f^{k-1}(z)) = f(y) = x$, thus $x$ has a source under $f^k$.
 Since $\{0,1\}^n$ is finite and since we have showed that $f^k$ is on-to, we have that $f$ is also one to one, Hence $f$ is a permutation.
-Now assume that $f^k$ is not a one-way then there is a polynomial time algorithm $A$ that satisfies: 
-\[\Pr_{x\leftarrow \{0,1\}^n}(A(f^k(x) = x) > \epsilon\]
-We define an algorithm $A'$ that does the following on input x calculates $f^k(x)$ and feeds it to $A$. $A'$ is polynomial since $A$ and $k$ are polynomial, also note that:
-\[\Pr_{x\leftarrow \{0,1\}^n}(A'(x) = x) = \Pr_{x\leftarrow \{0,1\}^n}(A(f^k(x) = x) > \epsilon\]
+Now assume that $f^k$ is not  one-way then there is a polynomial time algorithm $A$ that satisfies: 
+\[\Pr_{x\leftarrow \{0,1\}^n}(A(f^k(x)) = x) > \epsilon\]
+We define an algorithm $A'$ that on input f(x) calculates $f^{k-1}(x)$ and feeds it to $A$. $A'$ is polynomial since $A$ and $k$ are polynomial, also note that:
+\[\Pr_{x\leftarrow \{0,1\}^n}(A'(f(x)) = x) = \Pr_{x\leftarrow \{0,1\}^n}(A(f^k(x) = x) > \epsilon\]
 Leading the a contradiction to the assumption that $f$ is a OWP, hence no such $A$ exists and $f^k$ is also a OWP.
 \subsection{}%1.c
 ndeed, assuming that there is some polynomial algorithm $A$ such that for some $m\in\{1,...n\}$, $\sigma_m = f^{n-m}(m)$ and $m'>m$, $A$ satisfies:
@@ -56,7 +56,7 @@ This is obviously a contradiction to the assumption that $f$ is a OWF, showing n
 \subsection{}%1.d
 //////////// need to do this!!!!!!!!!! ////////////
 \section{}%2
-Let $\tilde{f}$ be some one way function, and define $f$ such that $f(xl) = \tilde{f}(x0)$ (with $l$ being a single bit).
+Let $\tilde{f}$ be some one way function, and define $f$ such that $f(xl) = f(x0)$ (with $l$ being a single bit).
 Suppose that $f$ is not a one way function, then there is an algorithm $A$ such that 
 \[\Pr_{x\leftarrow \{0,1\}^n}(A(f(x)) = x) > \epsilon\]
 Construct an algorithm $A'$ that on input $\tilde{f}(x)$ executes $A$ to receive $yl$ and returns $y0$.
