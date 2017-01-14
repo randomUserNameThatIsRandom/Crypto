@@ -123,6 +123,29 @@ Indeed, we show a simulator that operates on input $(y,b)$:
 Then the output of this simulator is Indeed indistinguishable from a true execution of the protocol since if $b=0$ then we send values that would have made the verifier accept (we send a quadratic residue and then its root) and if $b=1$ we send $\tilde{z} = \tilde{a_1}^2 y^{-1} \pmod{N}$ and thus $\tilde{z}y = \tilde{a_1}^2  \pmod{N}$, hence the verifier would accept. Since by assumption quadratic residues are polynomially indistinguishable form non quadratic residues $\tilde{z}$ is indistinguishable form a uniformly drawn quadratic residue and thus the view is indistinguishable from a successful transaction between the prover and verifier.
 
 \section{}%5
+Let $T$ be a set of $t$ indices in $\{1,\ldots,n\}$. $\{f(k)\}_{k \in T}$ are the secret-shares corresponding to T. Let $f$ be a polynomial. 
+Define the partial functions: \[
+f_i(x)=y_i \prod_{k \in T \setminus \{i\}} \frac{x - k}{i - k}
+\]
+Then as shown in class: \[
+f(x) = \sum_{i \in T} f_i(x)
+\]
+Therefore: \begin{align*}
+f(0) &= \sum_{i \in T} f_i(0) \\
+     &= \sum_{i \in T} y_i \prod_{k \in T \setminus \{i\}} \frac{k}{k - i}
+\end{align*}
+Therefore if we define: \[
+b_i = \prod_{k \in T \setminus \{i\}} \frac{k}{k - i}
+\]
+We get: \[
+S = f(0) = \sum_{i \in T} b_i y_i
+\]
+Using above formula for $\{b_i\}$, we demonstrate in sage secret reconstruction for various cases as defined in the exercise.
+
+\pagebreak
+\lstinputlisting[language=Python, caption=Q5 Code]{Q5.sage}
+\lstinputlisting[caption=Q1 Output]{Q5_output.txt}
+
 \section{}%6
 \subsection{}%6.a
 

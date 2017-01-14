@@ -1,0 +1,30 @@
+f: 3*x^2 + 7*x + 3
+g: 3*x^2 + 7*x + 7
+********************
+shares: [2, 7, 7, 2, 3, 10]
+T shares: [2, 7, 2]
+coefs: [10, 9, 4]
+real secret: 3
+calculated secret: 3
+success? True
+********************
+shares: [2, 7, 7, 2, 3, 10]
+T shares: [2, 7, 3]
+coefs: [8, 2, 2]
+real secret: 3
+calculated secret: 3
+success? True
+********************
+shares: [6, 0, 0, 6, 7, 3]
+T shares: [6, 0, 6]
+coefs: [10, 9, 4]
+real secret: 7
+calculated secret: 7
+success? True
+********************
+shares: [6, 0, 0, 6, 7, 3]
+T shares: [6, 0, 7]
+coefs: [8, 2, 2]
+real secret: 7
+calculated secret: 7
+success? True
