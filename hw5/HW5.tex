@@ -56,7 +56,7 @@ This is obviously a contradiction to the assumption that $f$ is a OWF, showing n
 \subsection{}%1.d
 //////////// need to do this!!!!!!!!!! ////////////
 \section{}%2
-Let $\tilde{f}$ be some one way function, and define $f$ such that $f(xl) = f(x0)$ (with $l$ being a single bit).
+Let $\tilde{f}$ be some one way function, and define $f$ such that $f(xl) = \tilde{f}(x0)$ (with $l$ being a single bit).
 Suppose that $f$ is not a one way function, then there is an algorithm $A$ such that 
 \[\Pr_{x\leftarrow \{0,1\}^n}(A(f(x)) = x) > \epsilon\]
 Construct an algorithm $A'$ that on input $\tilde{f}(x)$ executes $A$ to receive $yl$ and returns $y0$.
