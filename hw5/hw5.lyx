@@ -100,20 +100,7 @@ status collapsed
 \end_layout
 
 \begin_layout Standard
-The scheme is not a one-time signature, it's not even a zero-time signature,
- because 
-\begin_inset Formula $\left(0,y\right)$
-\end_inset
-
- is a valid message-signature pair:
-\begin_inset Formula 
-\[
-f^{n-0}(x)=f^{n}(x)=y
-\]
-
-\end_inset
-
-Disregarding this specific case, given a message-signature pair 
+Given a message-signature pair 
 \begin_inset Formula $\left(m,\sigma\right)$
 \end_inset
 
@@ -239,6 +226,160 @@ x'=f^{-k}(y)=f^{-k}(f(x))=f^{-k+1}(x)
 
 \begin_layout Subsection*
 1.c
+\end_layout
+
+\begin_layout Standard
+Assume by contradiction that there is an PPT adversary 
+\begin_inset Formula $A$
+\end_inset
+
+ that for every 
+\begin_inset Formula $x\in\left\{ 1,\ldots,n\right\} $
+\end_inset
+
+, given 
+\begin_inset Formula $\left(m,\sigma=f^{n-m}(x)\right)$
+\end_inset
+
+, outputs 
+\begin_inset Formula $\left(m',\sigma'=f^{n-m'}(x)\right)$
+\end_inset
+
+ where 
+\begin_inset Formula $m'>m$
+\end_inset
+
+.
+ Denote 
+\begin_inset Formula $k:=m'-m>0$
+\end_inset
+
+.
+ Note that:
+\begin_inset Formula 
+\[
+f^{k}(\sigma')=f^{m'-m}(\sigma')=f^{m'-m}(f^{n-m'}(x))=f^{n-m}(x)=\sigma
+\]
+
+\end_inset
+
+Therefore 
+\begin_inset Formula $\sigma'=f^{-k}(\sigma)$
+\end_inset
+
+.
+ But by (1.b) 
+\begin_inset Formula $f^{k}$
+\end_inset
+
+ is a OWP.
+ This will lead to a contradition.
+\begin_inset Newline newline
+\end_inset
+
+Construct 
+\begin_inset Formula $A'$
+\end_inset
+
+ to invert 
+\begin_inset Formula $f^{k}$
+\end_inset
+
+ as follows: given some 
+\begin_inset Formula $\sigma=f^{k}(\sigma')$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Enumerate
+For each 
+\begin_inset Formula $m\in\left\{ 1,\ldots,n\right\} $
+\end_inset
+
+ check if 
+\begin_inset Formula $f^{m}(\sigma)=y$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+When a match is found continue.
+\end_layout
+
+\begin_layout Enumerate
+If all checks failed, then stop.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Calculate 
+\begin_inset Formula $(m',\sigma')=A(m,\sigma)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+return 
+\begin_inset Formula $\sigma'$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+If 
+\begin_inset Formula $A'$
+\end_inset
+
+ finds a match in step 1 then: 
+\begin_inset Formula $f^{n}(x)=y=f^{m}(\sigma)$
+\end_inset
+
+, Therefore: 
+\begin_inset Formula $\sigma=f^{n-m}(x)$
+\end_inset
+
+, i.e.
+ 
+\begin_inset Formula $\sigma$
+\end_inset
+
+is a signature of 
+\begin_inset Formula $m$
+\end_inset
+
+.
+ Thefore the pair given to 
+\begin_inset Formula $A$
+\end_inset
+
+ in step 2 is valid.
+ If 
+\begin_inset Formula $A$
+\end_inset
+
+ succeeds, then 
+\begin_inset Formula $A'$
+\end_inset
+
+ indeed returns the correct 
+\begin_inset Formula $\sigma'$
+\end_inset
+
+.
+ Also note that step 1 takes polynomial time in 
+\begin_inset Formula $n$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+XXXX
 \end_layout
 
 \begin_layout Subsection*
