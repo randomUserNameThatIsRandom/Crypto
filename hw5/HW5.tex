@@ -120,7 +120,7 @@ Indeed, we show a simulator that operates on input $(y,b)$:
 \item Set  $\tilde{z} = \tilde{a_1}^2 y^{-1} \pmod{N}$
 \end{itemize}
 \end{itemize}
-Then the output of this simulator is Indeed indistinguishable from a true execution of the protocol since if $b=0$ then we send values that would have made the verifier accept (we send a quadratic residue and then its root) and if $b=1$ we send $\tilde{z} = \tilde{a_1}^2 y^{-1} \pmod{N}$ and thus $\tilde{z}y = \tilde{a_1}^2  \pmod{N}$, hence the verifier would except. Since by assumption quadratic residues are polynomially indistinguishable form non quadratic residues $\tilde{z}$ is indistinguishable form a uniformly drawn quadratic residue and thus the view is indistinguishable from a successful transaction between the prover and verifier.
+Then the output of this simulator is Indeed indistinguishable from a true execution of the protocol since if $b=0$ then we send values that would have made the verifier accept (we send a quadratic residue and then its root) and if $b=1$ we send $\tilde{z} = \tilde{a_1}^2 y^{-1} \pmod{N}$ and thus $\tilde{z}y = \tilde{a_1}^2  \pmod{N}$, hence the verifier would accept. Since by assumption quadratic residues are polynomially indistinguishable form non quadratic residues $\tilde{z}$ is indistinguishable form a uniformly drawn quadratic residue and thus the view is indistinguishable from a successful transaction between the prover and verifier.
 
 \section{}%5
 \section{}%6
