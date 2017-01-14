@@ -17,7 +17,7 @@ linguistics
 \language_package default
 \inputencoding auto
 \fontencoding global
-\font_roman "default" "default"
+\font_roman "lmodern" "default"
 \font_sans "default" "default"
 \font_typewriter "default" "default"
 \font_math "auto" "auto"
@@ -459,6 +459,98 @@ doesn't give information
 
 .
  Therefore this is indeed a one-time signature scheme.
+\end_layout
+
+\begin_layout Section
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+{}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+2.a
+\end_layout
+
+\begin_layout Standard
+Assume 
+\begin_inset Formula $y\notin QR$
+\end_inset
+
+.
+ Let 
+\begin_inset Formula $P^{*}$
+\end_inset
+
+ be a prover, and let 
+\begin_inset Formula $z$
+\end_inset
+
+ be the number it sends in the first step.
+ Note that:
+\begin_inset Formula 
+\[
+\left(\frac{zy}{N}\right)=\left(\frac{z}{N}\right)\overbrace{\left(\frac{y}{N}\right)}^{=-1}=-\left(\frac{z}{N}\right)
+\]
+
+\end_inset
+
+Where the symbols above are jacobi symbols.
+ Therefore if 
+\begin_inset Formula $z$
+\end_inset
+
+ is a QR, then 
+\begin_inset Formula $\left(\frac{zy}{N}\right)=-1$
+\end_inset
+
+, meaning that zy is not a QR.
+ Now see:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
+\Pr\left[\text{V accepts}\right] & =\frac{1}{2}\Pr\left[a_{0}^{2}\equiv z\mid b=0\right]+\frac{1}{2}\Pr\left[a_{1}^{2}\equiv zy\mid b=1\right]\\
+\Pr\left[a_{0}^{2}\equiv z\mid b=0\right] & =\Pr\left[a_{0}^{2}\equiv z\mid b=0\land z\in QR\right]\Pr\left[z\in QR\right]+\overbrace{\Pr\left[a_{0}^{2}\equiv z\mid b=0\land z\notin QR\right]}^{=0}\Pr\left[z\notin QR\right]\\
+\Pr\left[a_{1}^{2}\equiv zy\mid b=1\right] & =\overbrace{\Pr\left[a_{1}^{2}\equiv zy\mid b=1\land z\in QR\right]}^{=0}\Pr\left[z\in QR\right]+\Pr\left[a_{1}^{2}\equiv zy\mid b=1\land z\notin QR\right]\Pr\left[z\notin QR\right]
+\end{align*}
+
+\end_inset
+
+The three equiations are from the law of total probality.
+ The zero term in the second line is because 
+\begin_inset Formula $z$
+\end_inset
+
+ is not a QR, therefore it has no square root.
+ The zero term in the second line is because 
+\begin_inset Formula $z$
+\end_inset
+
+ is a QR, and as noted at the begining, that implies that 
+\begin_inset Formula $zy$
+\end_inset
+
+ is not a QR.
+ To summerize:
+\begin_inset Formula 
+\begin{align*}
+\Pr\left[\text{V accepts}\right] & =\frac{1}{2}\left(\overbrace{\Pr\left[a_{0}^{2}\equiv z\mid b=0\land z\in QR\right]}^{\le1}\mathbb{I}_{z\in QR}+\overbrace{\Pr\left[a_{1}^{2}\equiv zy\mid b=1\land z\notin QR\right]}^{\le1}\mathbb{I}_{z\notin QR}\right)\\
+ & \le\frac{1}{2}\left(\mathbb{I}_{z\in QR}+\mathbb{I}_{z\notin QR}\right)=\frac{1}{2}\cdot1=\frac{1}{2}
+\end{align*}
+
+\end_inset
+
+
 \end_layout
 
 \end_body
