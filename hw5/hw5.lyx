@@ -387,13 +387,13 @@ XXXX
 \end_layout
 
 \begin_layout Standard
-We will require an additional OWP 
-\begin_inset Formula $g$
+We will generate a new 
+\begin_inset Formula $x'\neq x$
 \end_inset
 
 .
  Set 
-\begin_inset Formula $y'=g^{n}(x)$
+\begin_inset Formula $y'=f^{n}(x')$
 \end_inset
 
 .
@@ -402,7 +402,7 @@ We will require an additional OWP
 \end_inset
 
  to be 
-\begin_inset Formula $\left(f^{n-m}(x),g^{m}(x)\right)$
+\begin_inset Formula $\left(f^{n-m}(x),f^{m}(x')\right)$
 \end_inset
 
 .
@@ -415,7 +415,7 @@ We will require an additional OWP
 \end_inset
 
  and that 
-\begin_inset Formula $g^{n-m}(\sigma_{2})=y'$
+\begin_inset Formula $f^{n-m}(\sigma_{2})=y'$
 \end_inset
 
 .
@@ -431,7 +431,7 @@ We will require an additional OWP
 \begin_inset Formula 
 \begin{align*}
 f^{m}(\sigma_{1}) & =f^{m+n-m}(x)=f^{n}(x)=y\\
-g^{n-m}(\sigma_{2}) & =g^{n-m+m}(x)=g^{n}(x)=y'
+f^{n-m}(\sigma_{2}) & =f^{n-m+m}(x')=f^{n}(x')=y'
 \end{align*}
 
 \end_inset
