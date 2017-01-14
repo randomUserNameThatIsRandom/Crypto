@@ -70,6 +70,30 @@ The equality (in the second line) is correct because $A'$ will produce a valid r
 Now that we have constructed $f$ and have shown that it is a one way function, then if we use Lamport’s scheme with $f$ and have a valid signature $(x_{m_1, 1}, ..., x_{m_n, n})$ of the message $(m_1, ... , m_2)$ then we know that if $x_{m_1, 1} = xl$ then  $(x\overline{l}, ..., x_{m_n, n})$ is also a signature for the same message from the construction of $f$, since $f(xl) = f(x\overline{l})$, showing that using $f$ Lamport’s scheme is not a strong one time signature scheme.
 
 \section{}%3
+Assume we are given such an algorithm $A$ that breaks $(\epsilon,t)$-existential-unforgeability of the scheme, we construct $A'$ that breaks $(\frac{\epsilon}{t+1}, 1)$-existential- unforgeability of the underlying one-time scheme as follows:\\
+\begin{itemize}
+\item Draw $r\in\{1,...,t\}$ uniformly.
+\item If $r>1$
+\begin{itemize}
+\item Execute $A$ while simulating the oracle for the first $r-1$ messages (generating our own keys).
+\item For the $r-1$'th message $A$ asks for, $m_{r-1}$, sign $(m_{r-1}, pk)$ with $pk$ being the oracle's public key (which we are trying to attack) and send the result to $A$.
+\item For the next message $A$ asks for, $m_r$, generate the keys $(pk_r, sk_r)$, ask the oracle to sign $(pk_r, m_r)$
+\end{itemize}
+\item If $r=1$
+\begin{itemize}
+\item Publish that our public key is $pk$ (the private key that belongs to the oracle we are trying to break).
+\item For the first message $A$ asks for, $m_1$ generate keys $(pk_2, sk_2)$ and ask the oracle to sign $(pk_2, m_1 )$
+\end{itemize}
+
+\item Continue the process of simulating the oracle normally.
+\item $A$ returns a trust chain of messages that is different from the one we have provided to it. (We can assume that $A$'s output is of the form $((m_1, pk_2, \sigma_1),..., (m_n, pk_{n+1}, \sigma_n))$)
+If the chain $A$ returned differs from the chain we have created in the $r+1$'th index (even if $r=t$ that mean there is an extra message in the chain returned by $A$), return $(m_{r+1}, pk_{r+2}, \sigma_{r+1})$.
+
+\end{itemize}
+
+First we note that $A'$ runs roughly in the same time as $A$ since it only runs $A$, generates keys and queries the oracle once.
+As stated, note that $A'$ only queries the oracle once so we only need to prove that $A'$ can forge a new message with probability $>\frac{\epsilon}{t+1}$.
+Note that $A$ is able to forge a signature with probability $> \epsilon$ which mean that with probability $>\epsilon$ at the end of $A$ we will have a valid trust chain which is different form the one we have supplied $A$. note that the chain must differ at atleast one place (form the first to one after the last) thus the probability that there is a difference in the $r+1$'th place is at least $\frac{1}{t+1}$ in which case if $A$ indeed forged a valid chain, $\sigma_{r+1}$ is a signature of $(m_{r+1}, pk_{r+2})$ signed using $sk_r$ which is the oracles private key where $m+{r+1}$ is a previously unsigned message. Thus in this case (which happens with probability $>\frac{\epsilon}{t+1}$) $A'$ breaks the underling signature scheme, showing it is not $(\frac{\epsilon}{t+1}, 1)$-existential- unforgeability  as requested.
 
 \section{}%4
 \subsection{}%4.a
