@@ -81,20 +81,6 @@ linguistics
 
 \begin_body
 
-\begin_layout Section
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-{}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Subsection*
 1.a
 \end_layout
@@ -461,22 +447,8 @@ doesn't give information
  Therefore this is indeed a one-time signature scheme.
 \end_layout
 
-\begin_layout Section
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-{}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Subsection*
-2.a
+4.a
 \end_layout
 
 \begin_layout Standard
@@ -551,6 +523,104 @@ The three equiations are from the law of total probality.
 \end_inset
 
 
+\end_layout
+
+\begin_layout Subsection*
+4.b
+\end_layout
+
+\begin_layout Standard
+Define 
+\begin_inset Formula $S(y,b)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Enumerate
+Sample 
+\begin_inset Formula $\tilde{r}\leftarrow\mathbb{Z}_{N}^{*}$
+\end_inset
+
+, send 
+\begin_inset Formula $\tilde{z}=\tilde{r}^{2}\mod N$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+If 
+\begin_inset Formula $b=0$
+\end_inset
+
+ send 
+\begin_inset Formula $\tilde{a_{0}}=\tilde{r}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+If 
+\begin_inset Formula $b=1$
+\end_inset
+
+ sample and send 
+\begin_inset Formula $\tilde{a_{1}}\leftarrow\mathbb{Z}_{N}^{*}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Obviously 
+\begin_inset Formula $\tilde{z}\approx z$
+\end_inset
+
+.
+ Need to show that 
+\begin_inset Formula $\tilde{a_{b}}\approx a_{b}$
+\end_inset
+
+.
+ Obviously 
+\begin_inset Formula $\tilde{a_{0}}\approx a_{0}$
+\end_inset
+
+, so it remains to show that 
+\begin_inset Formula $\tilde{a_{1}}\approx a_{1}$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $xr$
+\end_inset
+
+ is unoformly distributed over 
+\begin_inset Formula $\mathbb{Z}_{N}^{*}$
+\end_inset
+
+ since 
+\begin_inset Formula $r\leftarrow\mathbb{Z}_{N}^{*}$
+\end_inset
+
+ and 
+\begin_inset Formula $x$
+\end_inset
+
+ is non-random (formal proof similar to the solution of HW1 Q3a).
+\begin_inset Newline newline
+\end_inset
+
+Therefore 
+\begin_inset Formula $a_{1}=xr\approx\tilde{a_{1}}$
+\end_inset
+
+.
 \end_layout
 
 \end_body
