@@ -32,12 +32,11 @@ Now assume that $f^{k-1}$ is a permutation, let $x\in\{0,1\}^n$ then $x$ has a s
 Since $\{0,1\}^n$ is finite and since we have showed that $f^k$ is on-to, we have that $f$ is also one to one, Hence $f$ is a permutation.
 Now assume that $f^k$ is not  one-way then there is a polynomial time algorithm $A$ that satisfies: 
 \[\Pr_{x\leftarrow \{0,1\}^n}(A(f^k(x)) = x) > \epsilon\]
-We define an algorithm $A'$ that on input f(x) calculates $f^{k-1}(x)$ and feeds it to $A$. $A'$ is polynomial since $A$ and $k$ are polynomial, also note that:
 We define an algorithm $A'$ that on input $y=f(x)$ calculates $f^{k-1}(y)$ and feeds it to $A$. $A'$ is polynomial since $A$ and $k$ are polynomial, also note that:
 \[\Pr_{x\leftarrow \{0,1\}^n}(A'(f(x)) = x) = \Pr_{x\leftarrow \{0,1\}^n}(A(f^k(x) = x) > \epsilon\]
 Leading the a contradiction to the assumption that $f$ is a OWP, hence no such $A$ exists and $f^k$ is also a OWP.
 \subsection{}%1.c
-ndeed, assuming that there is some polynomial algorithm $A$ such that for some $m\in\{1,...n\}$, $\sigma_m = f^{n-m}(m)$ and $m'>m$, $A$ satisfies:
+Indeed, assuming that there is some polynomial algorithm $A$ such that for some $m\in\{1,...n\}$, $\sigma_m = f^{n-m}(m)$ and $m'>m$, $A$ satisfies:
 Indeed, assuming that there is some polynomial algorithm $A$ such that for some $m\in\{1,...n\}$, $\sigma_m = f^{n-m}(m)$ and $m'>m$, $A$ satisfies:
 \[\Pr_{x\leftarrow \{0,1\}^n}(A(\sigma_m) = \sigma(m') = f^{n-m'}(x)) > \epsilon\]
 We construct a polynomial algorithm $A'$ that inverts $f$ with the same probability, on input $f(w)$ $A'$ will do the following:
