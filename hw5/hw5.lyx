@@ -709,7 +709,31 @@ D_{\left\{ sk_{i,c}\right\} }\left(g^{k},m\beta^{k}\right) & =m\beta^{k}\prod_{i
 
 \end_inset
 
-TODO: explain why a subset of the shares can't help break the encryption.
+Note that this scheme is resistant to coalitions of size 
+\begin_inset Formula $<n$
+\end_inset
+
+.
+ For the coalition 
+\begin_inset Formula $\left\{ 1,\ldots,n-1\right\} $
+\end_inset
+
+ it is obvious because 
+\begin_inset Formula $a_{1},\ldots,a_{n-1}$
+\end_inset
+
+ are completely random and by themselves are unrelared to the secret 
+\begin_inset Formula $a$
+\end_inset
+
+.
+ For a different coalition e.g.
+ 
+\begin_inset Formula $\left\{ 2,\ldots,n\right\} $
+\end_inset
+
+ the proof is similar to the case of n-out-of-n Secret Sharing as seen in
+ lecture 11, slide 28.
 \end_layout
 
 \end_body
