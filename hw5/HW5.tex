@@ -148,6 +148,42 @@ Using above formula for $\{b_i\}$, we demonstrate in sage secret reconstruction 
 
 \section{}%6
 \subsection{}%6.a
+We will generate $\left\{ a_{i}\right\} _{i=1,\ldots,n}$ by drawing
+$a_{i}\leftarrow\mathbb{Z}_{p}^{*}$ for $i=1,\ldots n-1$, and setting:
+\[
+a_{n}=n-(a_{1}+\ldots+a_{n-1})\pmod{\phi(p)=p-1}
+\]
+Note that this gives us:
+\[
+a_{1}+\ldots+a_{n}\equiv a\pmod{\phi(p)=p-1}
+\]
+We will use these values as $\left\{ sk_{i}\right\} $. Given a cipher
+$c=\left(c_{1},c_{2}\right)$ each student $i$ will compute:
+\[
+sk_{i,c}=\left(c_{1}^{-1}\right)^{a_{i}}
+\]
+Together, all of the students combined can decrypt the message as
+follows:
+\[
+D_{\left\{ sk_{i,c}\right\} }(c_{1},c_{2})=c_{2}\prod_{i=1}^{n}sk_{i,c}
+\]
+Indeed, if $c=\left(g^{k},m\beta^{k}\right)$ then:
+\begin{align*}
+D_{\left\{ sk_{i,c}\right\} }\left(g^{k},m\beta^{k}\right) & =m\beta^{k}\prod_{i=1}^{n}\left(\left(g^{k}\right)^{-1}\right)^{a_{i}}\\
+ & =m\beta^{k}\prod_{i=1}^{n}g^{-ka_{i}}\\
+ & =m\beta^{k}g^{-k\sum_{i=1}^{n}a_{i}}\\
+ & \equiv m\beta^{k}g^{-ka}\\
+ & =m\left(g^{a}\right)^{k}g^{-ka}\\
+ & =mg^{0}\\
+ & =m
+\end{align*}
+Note that this scheme is resistant to coalitions of size $<n$. For
+the coalition $\left\{ 1,\ldots,n-1\right\} $ it is obvious because
+$a_{1},\ldots,a_{n-1}$ are completely random and by themselves are
+unrelated to the secret $a$. For a different coalition e.g. $\left\{ 2,\ldots,n\right\} $
+the proof is similar to the case of n-out-of-n Secret Sharing as seen
+in lecture 11, slide 28.
+
 
 \subsection{}%6.b
 
