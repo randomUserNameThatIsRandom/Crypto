@@ -629,5 +629,88 @@ hable.
  Jonathan's solution is correct...
 \end_layout
 
+\begin_layout Subsection*
+6.a
+\end_layout
+
+\begin_layout Standard
+We will generate 
+\begin_inset Formula $\left\{ a_{i}\right\} _{i=1,\ldots,n}$
+\end_inset
+
+ by drawing 
+\begin_inset Formula $a_{i}\leftarrow\mathbb{Z}_{p}^{*}$
+\end_inset
+
+ for 
+\begin_inset Formula $i=1,\ldots n-1$
+\end_inset
+
+, and set:
+\begin_inset Formula 
+\[
+a_{n}=n-(a_{1}+\ldots+a_{n-1})\pmod{\phi(p)=p-1}
+\]
+
+\end_inset
+
+Note that this gives us:
+\begin_inset Formula 
+\[
+a_{1}+\ldots+a_{n}\equiv a\pmod{\phi(p)=p-1}
+\]
+
+\end_inset
+
+We will use these values as 
+\begin_inset Formula $\left\{ sk_{i}\right\} $
+\end_inset
+
+.
+ Given a cipher 
+\begin_inset Formula $c=\left(c_{1},c_{2}\right)$
+\end_inset
+
+ each student 
+\begin_inset Formula $i$
+\end_inset
+
+ will compute:
+\begin_inset Formula 
+\[
+sk_{i,c}=\left(c_{1}^{-1}\right)^{a_{i}}
+\]
+
+\end_inset
+
+Together, all of the students combined can decrypt the message as follows:
+\begin_inset Formula 
+\[
+D_{\left\{ sk_{i,c}\right\} }(c_{1},c_{2})=c_{2}\prod_{i=1}^{n}sk_{i,c}
+\]
+
+\end_inset
+
+Indeed, if 
+\begin_inset Formula $c=\left(g^{k},m\beta^{k}\right)$
+\end_inset
+
+ then:
+\begin_inset Formula 
+\begin{align*}
+D_{\left\{ sk_{i,c}\right\} }\left(g^{k},m\beta^{k}\right) & =m\beta^{k}\prod_{i=1}^{n}\left(\left(g^{k}\right)^{-1}\right)^{a_{i}}\\
+ & =m\beta^{k}\prod_{i=1}^{n}g^{-ka_{i}}\\
+ & =m\beta^{k}g^{-k\sum_{i=1}^{n}a_{i}}\\
+ & \equiv m\beta^{k}g^{-ka}\\
+ & =m\left(g^{a}\right)^{k}g^{-ka}\\
+ & =mg^{0}\\
+ & =m
+\end{align*}
+
+\end_inset
+
+TODO: explain why a subset of the shares can't help break the encryption.
+\end_layout
+
 \end_body
 \end_document
