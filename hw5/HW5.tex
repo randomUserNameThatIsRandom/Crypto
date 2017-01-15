@@ -139,6 +139,7 @@ Indeed, we show a simulator that operates on input $(y,b)$:
 \end{itemize}
 Then the output of this simulator is Indeed indistinguishable from a true execution of the protocol since if $b=0$ then we send values that would have made the verifier accept (we send a quadratic residue and then its root) and if $b=1$ we send $\tilde{z} = \tilde{a_1}^2 y^{-1} \pmod{N}$ and thus $\tilde{z}y = \tilde{a_1}^2  \pmod{N}$, hence the verifier would accept. Since by assumption quadratic residues are polynomially indistinguishable form non quadratic residues $\tilde{z}$ is indistinguishable form a uniformly drawn quadratic residue and thus the view is indistinguishable from a successful transaction between the prover and verifier.
 
+\pagebreak
 \section{}%5
 Let $T$ be a set of $t$ indices in $\{1,\ldots,n\}$. $\{f(k)\}_{k \in T}$ are the secret-shares corresponding to T. Let $f$ be a polynomial. 
 Define the partial functions: \[
@@ -163,6 +164,7 @@ Using above formula for $\{b_i\}$, we demonstrate in sage secret reconstruction 
 \lstinputlisting[language=Python, caption=Q5 Code]{Q5.sage}
 \lstinputlisting[caption=Q1 Output]{Q5_output.txt}
 
+\pagebreak
 \section{}%6
 \subsection{}%6.a
 We will generate $\left\{ a_{i}\right\} _{i=1,\ldots,n}$ by drawing
@@ -200,8 +202,5 @@ $a_{1},\ldots,a_{n-1}$ are completely random and by themselves are
 unrelated to the secret $a$. For a different coalition e.g. $\left\{ 2,\ldots,n\right\} $
 the proof is similar to the case of n-out-of-n Secret Sharing as seen
 in lecture 11, slide 28.
-
-
-\subsection{}%6.b
 
 \end{document}
