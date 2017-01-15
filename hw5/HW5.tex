@@ -18,7 +18,7 @@
 \begin{document}
   \maketitle
 
-\section{1}
+\section{}%1
 \subsection{}%1.a
 Indeed, suppose we have the signature $\sigma_m$ of $m\in\{1,..., n\}$, then we can obtain the signature of any $k \in\{1,...,n\}$ that satisfies $k < m$ by simply setting $\sigma_k = f^{m-k}(\sigma_m)$, then we have that 
 \[f^{k}(\sigma_k) = f^{k}(f^{m-k}(\sigma_m)) = f^{m}(\sigma_m) = y\]
@@ -54,8 +54,25 @@ Then
 \end{align*}
 The first equality is due to the fact that given a random $w$, the probability for any $x\leftarrow \{0,1\}^n$ to be its $k$'th source is equal for every $x$ as we assume that $f$ was chosen uniformly form the random permutation functions.
 This is obviously a contradiction to the assumption that $f$ is a OWF, showing no such algorithm $A$ exists.
+
 \subsection{}%1.d
-//////////// need to do this!!!!!!!!!! ////////////
+We will generate a new $x'\neq x$. Set $y'=f^{n}(x')$. Modify the
+signature of message $m$ to be $\left(f^{n-m}(x),f^{m}(x')\right)$.
+The verification of a pair $\left(m,\left(\sigma_{1},\sigma_{2}\right)\right)$
+will be to check that $f^{m}(\sigma_{1})=y$ and that $f^{n-m}(\sigma_{2})=y'$.
+Indeed, if $\left(\sigma_{1},\sigma_{2}\right)$ is a correct signature
+of $m$ then:
+\begin{align*}
+f^{m}(\sigma_{1}) & =f^{m+n-m}(x)=f^{n}(x)=y\\
+f^{n-m}(\sigma_{2}) & =f^{n-m+m}(x')=f^{n}(x')=y'
+\end{align*}
+The first part of the signature pair is exaclty like in the original
+scheme, and the second part ``doesn't give information'' over the
+first part. Therefore the proof of (1.c) will still hold, preventing
+forging of sigmatures for $m'>m$. The second part of the signature
+works in a similar way to prevent forging messages $m'<m$. Therefore
+this is indeed a one-time signature scheme.
+
 \section{}%2
 Let $\tilde{f}$ be some one way function, and define $f$ such that $f(xl) = f(x0)$ (with $l$ being a single bit).
 Suppose that $f$ is not a one way function, then there is an algorithm $A$ such that 
